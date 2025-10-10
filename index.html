@@ -25,10 +25,563 @@
   <!-- Additional SEO Meta Tags -->
   <meta name="keywords" content="Jun Li, Machine Learning, Computer Vision, PhD Student, TUM, Technical University of Munich, AI Research">
   <meta name="robots" content="index, follow">
+  
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      font-size: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: #fafafa; /* Changed from #ffffff to a softer off-white */
+      color: #2c3e50; /* Changed from #333 to a more sophisticated dark blue-gray */
+    }
+    
+    /* Navigation Bar */
+    .navbar {
+      background: linear-gradient(135deg, #e8f4fd 0%, #d1e7dd 100%); /* Softer blue-green gradient */
+      box-shadow: 0 2px 15px rgba(52, 152, 219, 0.15); /* Slightly stronger shadow */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0;
+    }
+    
+    .nav-container {
+      max-width: 900px; /* Increased from 800px */
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 2rem; /* Reduced from 1rem to 0.7rem */
+    }
+    
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2980b9; /* More refined blue */
+      text-decoration: none;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: #34495e; /* Sophisticated dark gray-blue */
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      background-color: #3498db; /* Refined blue */
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: #2196F3;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+    
+    /* Dark theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: 2px solid #34495e; /* Match nav-link color */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #34495e;
+      transition: all 0.3s ease;
+      margin-left: 1rem;
+    }
+    
+    .theme-toggle:hover {
+      background-color: #34495e;
+      color: white;
+      transform: rotate(180deg);
+    }
+    
+    /* Main content styling */
+    .main-content {
+      max-width: 900px; /* Increased from 800px */
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* Section headers */
+    heading {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #2980b9; /* Match nav-logo color */
+      display: block;
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #e8f4fd; /* Softer blue */
+    }
+    
+    /* Profile section */
+    .profile-section {
+      /* background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%); */
+      border-radius: 15px;
+      /* padding: 2rem; */
+      margin-bottom: 2rem;
+      /* box-shadow: 0 4px 15px rgba(33, 150, 243, 0.1); */
+    }
+    
+    name {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #2980b9; /* Consistent with headers */
+      display: block;
+    }
+    
+    /* Icon styling */
+    .icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+    
+    .icon:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Paper container - Change from table to flex layout */
+    .paper-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; /* Reduced from 1.5rem */
+      margin-top: 0.5rem;
+    }
+    
+    /* Individual paper card */
+    .paper-item {
+      display: flex;
+      /* background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%); */
+      border-radius: 15px;
+      padding: 1rem 0 1rem 1rem; /* Reduced right padding, kept left padding */
+      /* box-shadow: 0 4px 15px rgba(52, 152, 219, 0.15); */
+      transition: all 0.3s ease;
+      gap: 1rem;
+    }
+    
+    .paper-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.2);
+    }
+    
+    /* Paper image section */
+    .paper-item-img {
+      flex-shrink: 0;
+      width: 200px; /* Reduced from 250px */
+    }
+    
+    .paper-item-img img {
+      width: 100%;
+      height: 100px; /* Reduced from 120px */
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.25);
+      transition: transform 0.3s ease;
+    }
+    
+    .paper-item-img img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Paper content section */
+    .paper-item-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-right: 1rem; /* Add right padding to maintain some spacing from edge */
+    }
+    
+    .paper-item-content p {
+      line-height: 1.0em;
+      margin: 0;
+      text-align: left; /* Explicitly set left alignment */
+    }
+    
+    papertitle {
+      font-size: 1.0em;
+      font-weight: bold;
+      color: #2980b9;
+      display: block;
+      margin-bottom: 0.0rem;
+      text-align: left; /* Explicitly set left alignment for title */
+    }
+    
+    /* Dark theme for paper items */
+    body.dark-theme .paper-item {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-theme .paper-item:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    body.dark-theme .paper-item-img img {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Responsive design for paper items */
+    @media (max-width: 768px) {
+      .paper-item {
+        flex-direction: column;
+        gap: 0.8rem; /* Reduced from 1rem */
+        padding: 0.8rem; /* Reduced from 1rem */
+      }
+      
+      .paper-item-img {
+        width: 100%;
+        align-self: center;
+      }
+      
+      .paper-item-img img {
+        max-width: 250px; /* Reduced from 300px */
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    
+    /* News section - Enhanced with scrolling */
+    .news-section {
+      border-radius: 15px;
+      margin: 1rem 0;
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15); /* Enhanced shadow */
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%); /* Very subtle blue gradient */
+    }
+    
+    .news-container {
+      height: 100%;
+      overflow-y: scroll; /* Always show scroll */
+      padding: 1.5rem;
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom scrollbar - Make it more visible */
+    .news-container::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    .news-container::-webkit-scrollbar-track {
+      background: rgba(52, 152, 219, 0.15); /* Refined blue */
+      border-radius: 10px;
+      margin: 5px;
+    }
+    
+    .news-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #3498db, #2980b9); /* Refined blue gradient */
+      border-radius: 10px;
+      border: 2px solid rgba(248, 251, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .news-container::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #2980b9, #2471a3); /* Darker refined blue */
+      border: 2px solid rgba(248, 251, 255, 0.1);
+    }
+    
+    /* Firefox scrollbar */
+    .news-container {
+      scrollbar-width: auto;
+      scrollbar-color: #3498db rgba(52, 152, 219, 0.15);
+    }
+    
+    /* Remove fade effects since we want visible scrollbar */
+    .news-section::before,
+    .news-section::after {
+      display: none;
+    }
+    
+    /* News items */
+    .news-item {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(52, 152, 219, 0.2); /* Refined blue border */
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      margin-bottom: 0.2rem;
+    }
+    
+    .news-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    
+    .news-item:hover {
+      background-color: rgba(52, 152, 219, 0.1); /* Refined blue hover */
+      padding: 0.4rem 0.6rem;
+      margin: 0 -0.6rem 0.2rem -0.6rem;
+      transform: translateX(5px);
+    }
+    
+    .news-item:last-child:hover {
+      margin-bottom: -0.4rem; /* Reduced from -0.8rem */
+    }
+    
+    /* Adjust line height for news items */
+    .news-item p {
+      line-height: 1.5em !important; /* Reduced from 1.8em */
+      margin: 0; /* Remove any default margins */
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #e8f4fd 0%, #d1e7dd 100%); /* Match navbar */
+      padding: 2rem;
+      margin-top: 3rem;
+      border-radius: 15px 15px 0 0;
+      text-align: center;
+      color: #2980b9; /* Refined blue */
+    }
+    
+    /* Others section styling */
+    .others-content {
+      /* Remove background and styling to match bio section */
+      padding: 0;
+      margin: 1rem 0 0 0;
+    }
+    
+    .others-content ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+    
+    .others-content > ul {
+      padding-left: 0;
+    }
+    
+    .others-content li {
+      margin-bottom: 0.3rem; /* Reduced from 0.5rem */
+      line-height: 1.4; /* Reduced line height */
+    }
+    
+    .others-content > ul > li {
+      font-weight: 600;
+      color: #2980b9; /* Consistent blue */
+      margin-bottom: 0.5rem;
+    }
+    
+    .others-content ul ul {
+      margin-top: 0.3rem; /* Reduced from 0.5rem */
+      padding-left: 2rem;
+    }
+    
+    .others-content ul ul li {
+      font-weight: normal;
+      color: #2c3e50; /* Match body color */
+      line-height: 1.4;
+      margin-bottom: 0.2rem;
+    }
+    
+    /* Links */
+    a {
+      color: #3498db; /* Refined blue for links */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #2980b9; /* Darker blue on hover */
+      text-decoration: underline;
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      font-size: 0.8rem;
+      color: rgba(41, 128, 185, 0.6); /* Refined blue with transparency */
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    /* Dark theme styles */
+    body.dark-theme {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    
+    body.dark-theme .navbar {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    }
+    
+    body.dark-theme .nav-logo {
+      color: #64b5f6;
+    }
+    
+    body.dark-theme .nav-link {
+      color: #90caf9;
+    }
+    
+    body.dark-theme .nav-link:hover {
+      background-color: #1976d2;
+      color: white;
+    }
+    
+    body.dark-theme .theme-toggle {
+      border-color: #90caf9;
+      color: #90caf9;
+    }
+    
+    body.dark-theme .theme-toggle:hover {
+      background-color: #90caf9;
+      color: #121212;
+    }
+    
+    body.dark-theme .profile-section {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      color: #e0e0e0;
+    }
+    
+    body.dark-theme name {
+      color: #64b5f6;
+    }
+    
+    body.dark-theme heading {
+      color: #64b5f6;
+      border-bottom-color: #2d2d2d;
+    }
+    
+    body.dark-theme .news-section {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-theme .news-item {
+      border-bottom-color: rgba(144, 202, 249, 0.2);
+    }
+    
+    body.dark-theme .news-item:hover {
+      background-color: rgba(144, 202, 249, 0.1);
+    }
+    
+    body.dark-theme .news-container::-webkit-scrollbar-track {
+      background: rgba(144, 202, 249, 0.1);
+    }
+    
+    body.dark-theme .news-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #64b5f6, #1976d2);
+    }
+    
+    body.dark-theme .paper-item-img img {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    
+    body.dark-theme papertitle {
+      color: #64b5f6;
+    }
+    
+    body.dark-theme a {
+      color: #64b5f6;
+    }
+    
+    body.dark-theme a:hover {
+      color: #90caf9;
+    }
+    
+    body.dark-theme .others-content > ul > li {
+      color: #64b5f6;
+    }
+    
+    body.dark-theme .others-content ul ul li {
+      color: #e0e0e0;
+    }
+    
+    body.dark-theme footer {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      color: #64b5f6;
+    }
+    
+    body.dark-theme .scroll-indicator {
+      color: rgba(100, 181, 246, 0.6);
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 60px;
+        flex-direction: column;
+        background: linear-gradient(135deg, #e8f4fd 0%, #d1e7dd 100%); /* Match navbar */
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(52, 152, 219, 0.15);
+        padding: 2rem 0;
+      }
+      
+      .nav-menu.active {
+        left: 0;
+      }
+      
+      .nav-toggle {
+        display: flex;
+      }
+      
+      .main-content {
+        padding: 1rem;
+      }
+      
+      name {
+        font-size: 2em;
+      }
+      
+      .news-section {
+        height: 280px; /* Smaller height on mobile */
+      }
+      
+      .news-container::-webkit-scrollbar {
+        width: 8px; /* Thinner scrollbar on mobile */
+      }
+      
+      .nav-container {
+        padding: 0.5rem 1rem; /* Reduced padding on mobile */
+      }
+      
+      .nav-link {
+        font-size: 1rem; /* Slightly smaller on mobile */
+      }
+    }
+    
+    /* Add scroll margin to sections to account for navbar */
+    section {
+      scroll-margin-top: 70px; /* Reduced from 80px due to smaller navbar height */
     }
   </style>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -60,333 +613,433 @@
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <!-- <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/JunLi.JPG", target="_blank"><img style="width:100%;max-width:100%" alt="profile photo" src="images/JunLi.JPG" class="hoverZoomLink"></a>
-            </td> -->
-            <td style="padding:2.5%;width:40%;max-width:30%">
-              <a href="images/JunLi2.jpg" target="_blank">
-                <img style="width:100%;max-width:100%; border-radius: 40%;" alt="Jun Li - Ph.D. Student at Technical University of Munich" src="images/JunLi2.jpg" class="hoverZoomLink">
-              </a>
-            </td>
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:left; display: flex; align-items: center;" >
-                <name>Jun Li</name>
-              </p>
-            <p style="line-height: 1.8em;">​Ph.D. Student
-              <br>
-              Technical University of Munich, Munich Center for Machine Learning
-              <br>
-              <em>Hobbies: </em>🛹🎹🚴‍♀️🎧🏋️👩‍💻
-              <br>
-              <em>🌟 Keep your eyes on the stars, and your feet on the ground.🤞🏻</em>
-              <br>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">Jun Li</a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#news" class="nav-link">News</a></li>
+        <li><a href="#bio" class="nav-link">About</a></li>
+        <li><a href="#publications" class="nav-link">Publications</a></li>
+        <li><a href="#others" class="nav-link">Others</a></li>
+      </ul>
+      <div style="display: flex; align-items: center;">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <!-- Home Section -->
+    <section id="home" class="profile-section">
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;"><tbody>
+        <tr style="padding:0px">
+          <td style="padding:2.5%;width:40%;max-width:30%">
+            <a href="images/JunLi2.jpg" target="_blank">
+              <img style="width:100%;max-width:100%; border-radius: 40%;" alt="Jun Li - Ph.D. Student at Technical University of Munich" src="images/JunLi2.jpg" class="hoverZoomLink">
+            </a>
+          </td>
+          <td style="padding:2.5%;width:63%;vertical-align:middle">
+            <p style="text-align:left; display: flex; align-items: center;" >
+              <name>Jun Li</name>
             </p>
-            
-            <p style="text-align:left;">
-                <span class="icon" style="margin: 0.8%;"><a href="https://scholar.google.com/citations?user=t9vB5TgAAAAJ&hl=en" target="_blank"><img src="images/icons/scholar_bbg.png" alt="Google Scholar"></a></span>
-                <span class="icon" style="margin: 0.8%;"><a href="https://github.com/LijunRio" target="_blank"><img src="images/icons/github_2.png" alt="GitHub"></a></span>
-                <span class="icon" style="margin: 0.8%;"><a href="mailto:june.li@tum.de"><img src="images/icons/email_icon.png" alt="Email"></a></span>
-                <span class="icon" style="margin: 0.8%;"><a href="https://www.linkedin.com/in/jun-li-657295290/" target="_blank"><img src="images/icons/linkedin.png" alt="LinkedIn"></a></span>
-                <!-- <span class="icon" style="margin: 0.8%;"><a href="pdf/CV.pdf" target="_blank"><img src="images/icons/cv_icon.png" alt="CV"></a></span> -->
-            </p>
+          <p style="line-height: 1.8em;">​Ph.D. Student
+            <br>
+            Technical University of Munich, Munich Center for Machine Learning
+            <br>
+            <em>Hobbies: </em>🛹🎹🚴‍♀️🎧🏋️👩‍💻
+            <br>
+            <em>🌟 Keep your eyes on the stars, and your feet on the ground.🤞🏻</em>
+            <br>
+          </p>
           
+          <p style="text-align:left;">
+              <span class="icon" style="margin: 0.8%;"><a href="https://scholar.google.com/citations?user=t9vB5TgAAAAJ&hl=en" target="_blank"><img src="images/icons/scholar_bbg.png" alt="Google Scholar"></a></span>
+              <span class="icon" style="margin: 0.8%;"><a href="https://github.com/LijunRio" target="_blank"><img src="images/icons/github_2.png" alt="GitHub"></a></span>
+              <span class="icon" style="margin: 0.8%;"><a href="mailto:june.li@tum.de"><img src="images/icons/email_icon.png" alt="Email"></a></span>
+              <span class="icon" style="margin: 0.8%;"><a href="https://www.linkedin.com/in/jun-li-657295290/" target="_blank"><img src="images/icons/linkedin.png" alt="LinkedIn"></a></span>
+          </p>
+        </td>
+      </tr>
+      </tbody></table>
+    </section>
 
-          </tr>
-        </tbody></table>
-        <br><hr>
-        <heading>📣News</heading>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-            <td style="padding-left:20px;width:100%;vertical-align:middle">
-              <p style="line-height: 1.8em;">
-            <strong>[09.2025]</strong>&nbsp;
-            <em>Our paper <strong>NOVA Benchmark</strong> accepted as <strong><span style="color:red;">Oral</span></strong> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track!</em>
-          <br>
-          <strong>[09.2025]</strong>&nbsp;
-          <em>Our paper <strong>K2Sight</strong> received <span style="color:red;">Early Accept</span> by WACV 2026 (<b>Top 6.4%</b>)!</em>
-          <br>
-          <strong>[09.2025]</strong>&nbsp;
-          <em>Invited by <strong>ACM Computing Surveys</strong> as reviewer (Impact Factor: 39.89).</em>
-          <br>
-          <strong>[08.2025]</strong>&nbsp;
-          <em><strong>Honorable Mention:</strong> MICCAI 2025 <strong>Outstanding Reviewer Award</strong>! See <a href="https://conferences.miccai.org/2025/en/MICCAI-2025-OUTSTANDING-REVIEWER-AWARDS.html" target="_blank">MICCAI 2025 Outstanding Reviewer Awards</a>.</em>
-          <br>
-          <strong>[04.2025]</strong>&nbsp;
-          <em>My new seminar 📚 <strong>AI for Vision-Language Models in Medical Imaging (IN2107, IN45069)</strong> is now open! For more details, please visit <a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">the course GitHub repository</a>.</em>
-          <br>
-          <strong>[06.2024]</strong> &nbsp;
-          <em>My seminar 📘 <strong>AI for Vision-Language Pre-training in Medical Imaging (IN2107)</strong> is now open! For more details, please visit <a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">the course GitHub repository</a>.</em>
-          <br>
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-
-        <br><hr>
-        <heading>😎Short Bio</heading>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-            <td style="padding-left:20px;width:100%;vertical-align:middle">
-              <p>
-                ​I am currently a Ph.D. student in the <a href="https://www.cit.tum.de/cit/startseite/", target="_blank">School of Computation, Information and Technology</a>, <a href="https://www.tum.de/", target="_blank"> Technical University of Munich</a>, supervised by <a href="https://www.professoren.tum.de/schnabel-julia", target="_blank">Prof. Julia Schnabel</a>. I am funded by the <a href="https://mcml.ai/", target="_blank"> Munich Center for Machine Learning (MCML)</a>.
-                Previously, I received the M. Eng. degree from <a href="https://english.ucas.ac.cn/", target="_blank">University of the Chinese Academy of Sciences </a>, under the supervison from <a href="https://ieeexplore.ieee.org/author/37403242300", target="_blank">Prof. Ying Hu</a>.
-              </p>
-              <p>
-                My research focused on the intersection of deep learning and healthcare, particularly in the analysis of medical images. My passion lies in improving the practicality of deep learning algorithms, with a primary focus on Vision and Language models, Cross-Modality Generation, and Multi-Modality Learning. Through my work in these areas, I aim to advance deep learning techniques and their transformative impact on healthcare.
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-
-        <br><hr>
-        <heading>📚Publications</heading>
-        <table class="paper-container"><tbody>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/dinov3.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Does DINOv3 Set a New Medical Vision Standard?</papertitle>
-              <br>
-
-              Che Liu, Yinda Chen, Haoyuan Shi, Jinpeng Lu, Bailiang Jian, Jiazhen Pan, Linghan Cai, Jiayi Wang, Yundi Zhang, <strong>Jun Li</strong>, Cosmin I. Bercea, Cheng Ouyang, Chen Chen, Zhiwei Xiong, Benedikt Wiestler, Christian Wachinger, Daniel Rueckert, Wenjia Bai, Rossella Arcucci
-              <br>
-              [<a href="https://arxiv.org/pdf/2509.06467",  target="_blank">paper</a>]
+    <!-- News Section -->
+    <section id="news">
+      <!-- <heading>📣News</heading> -->
+    <heading>News</heading>
+      <div class="news-section">
+        <div class="news-container">
+          <div class="news-item">
+            <p>
+              <strong>[09.2025]</strong>&nbsp;
+              <em>Our paper <strong>NOVA Benchmark</strong> accepted as <strong><span style="color:red;">Oral</span></strong> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track!</em>
             </p>
-            </td>
-          </tr>
-          <br>
-           <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/K2-Sight.jpg" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Knowledge to Sight: Reasoning over Visual Attributes via Knowledge Decomposition for Abnormality Grounding</papertitle>
-              <br>
-                <em>Accepted by WACV 2026 (<span style="color:red;">Early Accept</span>, Top 6.4%).</em>
-                <br>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[09.2025]</strong>&nbsp;
+              <em>Our paper <strong>K2Sight</strong> received <span style="color:red;">Early Accept</span> by WACV 2026 (<b>Top 6.4%</b>)!</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[09.2025]</strong>&nbsp;
+              <em>Invited by <strong>ACM Computing Surveys</strong> as reviewer (Impact Factor: 39.89).</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[08.2025]</strong>&nbsp;
+              <em><strong>Honorable Mention:</strong> MICCAI 2025 <strong>Outstanding Reviewer Award</strong>! See <a href="https://conferences.miccai.org/2025/en/MICCAI-2025-OUTSTANDING-REVIEWER-AWARDS.html" target="_blank">MICCAI 2025 Outstanding Reviewer Awards</a>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2025]</strong>&nbsp;
+              <em>My new seminar 📚 <strong>AI for Vision-Language Models in Medical Imaging (IN2107, IN45069)</strong> is now open! For more details, please visit <a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">the course GitHub repository</a>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[06.2024]</strong>&nbsp;
+              <em>My seminar 📘 <strong>AI for Vision-Language Pre-training in Medical Imaging (IN2107)</strong> is now open! For more details, please visit <a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">the course GitHub repository</a>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[03.2024]</strong>&nbsp;
+              <em>Started PhD studies at Technical University of Munich under the supervision of Prof. Julia Schnabel.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[12.2023]</strong>&nbsp;
+              <em>Completed Master's degree at University of Chinese Academy of Sciences.</em>
+            </p>
+          </div>
+        </div>
+        <div class="scroll-indicator">↕️ Scroll</div>
+      </div>
+    </section>
 
+    <!-- Bio Section -->
+    <section id="bio">
+      <!-- <heading>😎Short Bio</heading> -->
+       <heading>Short Bio</heading>
+      <p>
+        ​I am currently a Ph.D. student in the <a href="https://www.cit.tum.de/cit/startseite/", target="_blank">School of Computation, Information and Technology</a>, <a href="https://www.tum.de/", target="_blank"> Technical University of Munich</a>, supervised by <a href="https://www.professoren.tum.de/schnabel-julia", target="_blank">Prof. Julia Schnabel</a>. I am funded by the <a href="https://mcml.ai/", target="_blank"> Munich Center for Machine Learning (MCML)</a>.
+        Previously, I received the M. Eng. degree from <a href="https://english.ucas.ac.cn/", target="_blank">University of the Chinese Academy of Sciences </a>, under the supervison from <a href="https://ieeexplore.ieee.org/author/37403242300", target="_blank">Prof. Ying Hu</a>.
+      </p>
+      <p>
+        My research focused on the intersection of deep learning and healthcare, particularly in the analysis of medical images. My passion lies in improving the practicality of deep learning algorithms, with a primary focus on Vision and Language models, Cross-Modality Generation, and Multi-Modality Learning. Through my work in these areas, I aim to advance deep learning techniques and their transformative impact on healthcare.
+      </p>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+      <!-- <heading>📚Publications</heading> -->
+      <heading>Publications</heading>
+      <div class="paper-container">
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/dinov3.png" alt="DINOv3 paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Does DINOv3 Set a New Medical Vision Standard?</papertitle>
+            <p>
+              Che Liu, Yinda Chen, Haoyuan Shi, Jinpeng Lu, Bailiang Jian, Jiazhen Pan, Linghan Cai, Jiayi Wang, Yundi Zhang, <strong>Jun Li</strong>, Cosmin I. Bercea, Cheng Ouyang, Chen Chen, Zhiwei Xiong, Benedikt Wiestler, Christian Wachinger, Daniel Rueckert, Wenjia Bai, Rossella Arcucci
+              <br><br>
+              [<a href="https://arxiv.org/pdf/2509.06467" target="_blank">paper</a>]
+            </p>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/K2-Sight.jpg" alt="K2Sight paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Knowledge to Sight: Reasoning over Visual Attributes via Knowledge Decomposition for Abnormality Grounding</papertitle>
+            <p>
+              <em>Accepted by WACV 2026 (<span style="color:red;">Early Accept</span>, Top 6.4%).</em>
+              <br><br>
               <strong>Jun Li</strong>, Che Liu, Wenjia Bai, Mingxuan Liu, Rossella Arcucci, Cosmin I. Bercea, Julia A. Schnabel
-              <br>
-              [<a href="https://arxiv.org/pdf/2508.04572",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/pdf/2508.04572" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/K2Sight/" target="_blank">homepage</a>]
             </p>
-            </td>
-          </tr>
-          <br>
-          <!-- Paper item -->
-            <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/NOVA.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>NOVA: A Benchmark for Anomaly Localization and Clinical Reasoning in Brain MRI</papertitle>
-              <br>
-                <em>Accepted as <span style="color:red;">Oral</span> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track.</em>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/NOVA.png" alt="NOVA paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>NOVA: A Benchmark for Anomaly Localization and Clinical Reasoning in Brain MRI</papertitle>
+            <p>
+              <em>Accepted as <span style="color:red;">Oral</span> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track.</em>
+              <br><br>
               Cosmin I. Bercea, <strong>Jun Li</strong>, Philipp Raffler, Evamaria O. Riedel, Lena Schmitzer, Angela Kurz, Felix Bitzer, Paula Roßmüller, Julian Canisius, Mirjam L. Beyrle, Che Liu, Wenjia Bai, Bernhard Kainz, Julia A. Schnabel, Benedikt Wiestler.
-              <br>
-              [<a href="https://arxiv.org/abs/2505.14064"  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/abs/2505.14064" target="_blank">paper</a>]
               [<a href="https://huggingface.co/papers/2505.14064" target="_blank">huggingface</a>]
             </p>
-            </td>
-            </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/AG-KD.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Enhancing Abnormality Grounding for Vision-Language Models with Knowledge Descriptions</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/AG-KD.png" alt="AG-KD paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Enhancing Abnormality Grounding for Vision-Language Models with Knowledge Descriptions</papertitle>
+            <p>
               <strong>Jun Li</strong>, Che Liu, Wenjia Bai, Rossella Arcucci, Cosmin I. Bercea, Julia A. Schnabel.
-              <br>
-              [<a href="https://arxiv.org/abs/2503.03278",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/abs/2503.03278" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/AG-KD/" target="_blank">project</a>]
               [<a href="https://huggingface.co/spaces/RioJune/AG-KD" target="_blank">huggingface</a>]
             </p>
-            </td>
-          </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/OUI.jpg" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Organizing Unstructured Image Collections using Natural Language</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/OUI.jpg" alt="OUI paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Organizing Unstructured Image Collections using Natural Language</papertitle>
+            <p>
               Mingxuan Liu, Zhun Zhong, <strong>Jun Li</strong>, Gianni Franchi, Subhankar Roy, Elisa Ricci.
-              <br>
-              [<a href="https://arxiv.org/abs/2410.05217",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/abs/2410.05217" target="_blank">paper</a>]
             </p>
-            </td>
-          </tr>
-          
-           <!-- Paper item -->
-           <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/ffmbench.jpg" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Fmbench: Benchmarking fairness in multimodal large language models on medical tasks</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/ffmbench.jpg" alt="FMBench paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Fmbench: Benchmarking fairness in multimodal large language models on medical tasks</papertitle>
+            <p>
               Peiran Wu, Che Liu, Canyu Chen, <strong>Jun Li</strong>, Cosmin I Bercea, Rossella Arcucci.
-              <br>
-              [<a href="https://arxiv.org/abs/2410.01089",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/abs/2410.01089" target="_blank">paper</a>]
             </p>
-            </td>
-          </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/MI-VQA.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Language Models Meet Anomaly Detection for Better Interpretability and Generalizability</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/MI-VQA.png" alt="MI-VQA paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Language Models Meet Anomaly Detection for Better Interpretability and Generalizability</papertitle>
+            <p>
               <em>Accepted by MMMI 2024.</em>
-              <br>
+              <br><br>
               <strong>Jun Li</strong>, Su Hwan Kim, Philip Mller, Lina Felsner, Daniel Rueckert, Benedikt Wiestler, Julia A. Schnabel, Cosmin I. Bercea.
-              <br>
-              [<a href="https://arxiv.org/pdf/2404.07622.pdf",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/pdf/2404.07622.pdf" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/Multi-Image-VQA-for-UAD/" target="_blank">project</a>]
             </p>
-            </td>
-          </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/DSD.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Design as Desired: Utilizing Visual Question Answering for Multimodal Pre-training</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/DSD.png" alt="DSD paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Design as Desired: Utilizing Visual Question Answering for Multimodal Pre-training</papertitle>
+            <p>
               <em>Accepted by MICCAI 2024.</em>
-              <br>
+              <br><br>
               Tongkun Su*, <strong>Jun Li*</strong>, Xi Zhang, Haibo Jin, Hao Chen, Qiong Wang, Faqin Lv, Baoliang Zhao, Yin Hu
-              <br>
-              [<a href="https://arxiv.org/pdf/2404.00226.pdf",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/pdf/2404.00226.pdf" target="_blank">paper</a>]
               [<a href="https://github.com/MoramiSu/QFT-MICCAI2024" target="_blank">Code</a>]
             </p>
-            </td>
-          </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/URG.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>Ultrasound Report Generation with Cross-Modality Feature Alignment via Unsupervised Guidance</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/URG.png" alt="URG paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Ultrasound Report Generation with Cross-Modality Feature Alignment via Unsupervised Guidance</papertitle>
+            <p>
               <em>IEEE Transactions on Medical Imaging (IF:10.6).</em>
-              <br>
+              <br><br>
               <strong>Jun Li</strong>, Tongkun Su, Baoliang Zhao, Faqin Lv, Qiong Wang, Nassir Navab, Ying Hu, Zhongliang Jiang.
-              <br>
-              [<a href="https://arxiv.org/abs/2406.00644",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://arxiv.org/abs/2406.00644" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/Ultrasound-Report-Generation/" target="_blank">project</a>]
             </p>
-            </td>
-          </tr>
-           <!-- Paper item -->
-           <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/MICCAI22_SGF.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>A Self-guided Framework for Radiology Report Generation</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/MICCAI22_SGF.png" alt="SGF paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>A Self-guided Framework for Radiology Report Generation</papertitle>
+            <p>
               <em>Accepted by MICCAI 2022.</em>
               <em>(<span style="font-style: italic; color: red;">Early Accept</span>)</em>
               <br>
               <em>(Student Travel Award, Top 5%)</em>
-              <br>
+              <br><br>
               <strong>Jun Li</strong>, Shibo Li, Ying Hu, Huiren Tao.
-              <br>
-              [<a href="https://link.springer.com/chapter/10.1007/978-3-031-16452-1_56",  target="_blank">paper</a>]
+              <br><br>
+              [<a href="https://link.springer.com/chapter/10.1007/978-3-031-16452-1_56" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/A-Self-Guided-Framework/" target="_blank">project</a>]
             </p>
-            </td>
-          </tr>
-          <!-- Paper item -->
-          <tr>
-            <td class="paper-item-img">
-              <img src="images/papers/CMIG_2022.png" alt="clean-usnob" width="250" height="120">
-            </td>
-            <td width="75%" valign="middle">
-              <p style="line-height: 1.8em;">
-              <papertitle>XctNet: Reconstruction network of volumetric images from a single X-ray image</papertitle>
-              <br>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/CMIG_2022.png" alt="XctNet paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>XctNet: Reconstruction network of volumetric images from a single X-ray image</papertitle>
+            <p>
               <em>Computerized Medical Imaging and Graphics (<b>CMIG</b>), 2022.</em>
-              <br>
-              Zhiqiang Tan, <strong>Jun Li</strong>, Huiren Tao, Shibo Li, Ying Hu .              
-              <br>
-              [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0895611122000404",  target="_blank">paper</a>] 
+              <br><br>
+              Zhiqiang Tan, <strong>Jun Li</strong>, Huiren Tao, Shibo Li, Ying Hu.
+              <br><br>
+              [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0895611122000404" target="_blank">paper</a>]
             </p>
-            </td>
-          </tr>
-        </tbody></table>  
-        <br><hr>
-        <heading>📌Others</heading>
-        <table class="news" width="100%" align="center" border="0" cellpadding="0"><tbody>
-          <tr>
-            <td width="100%" valign="center">
-              <ul style="height: auto;">
-                <li>Teaching:</li>
-                <ul style="height: auto;">
-                  <li><a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">(S 25) AI for Vision-Language Models in Medical Imaging (IN2107, IN45069)</a>.</li> 
-                  <li><a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">(S 24/25) AI for Vision-Language Pre-training in Medical Imaging (IN2107)</a>.</li> 
-                </ul>
-              </ul>
-              <ul style="height: auto;">
-                <li>Conference Reviewer:</li>
-                <ul style="height: auto;">
-                  <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor: 39.89)</li>
-                  <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2025.</li> 
-                  <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024.</li> 
-                </ul>
-              <li>Activities:</li>
-              <ul style="height: auto;">
-                <li><a href="https://iplab.dmi.unict.it/icvss2024/" target="_blank">International Summer School in Computer Vision (ICVSS)</a>, Sicily, 2024.</li>
-              </ul>
-              </ul>
-            </td>
-          </tr>
-        </tbody></table>
-        <br><hr>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- <br><hr> -->
-        <br>
-        <br>
-        <!-- <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=LpkeCEOsLWcfMT_2Q--JRRvMAuxzTlQA23wCR6roJiY&cl=ffffff&w=300"></script> -->
-        <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=340&t=tt&d=LpkeCEOsLWcfMT_2Q--JRRvMAuxzTlQA23wCR6roJiY&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff&w=400'></script>
-        <footer>
-          <p style="text-align:center"> © Jun Li | Homepage</p>
-          <p style="text-align:center;font-size:small;">
-            Design and source code from <a style="font-size:small;" href="https://jonbarron.info", target="_blank">Jon Barron's website</a>.
-          </a></p>
-        </footer>
+    <!-- Others Section -->
+    <section id="others">
+      <!-- <heading>📌Others</heading> -->
+    <heading>Others</heading>
+      <div class="others-content">
+        <ul>
+          <li>Teaching:
+            <ul>
+              <li><a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">(S 25) AI for Vision-Language Models in Medical Imaging (IN2107, IN45069)</a></li> 
+              <li><a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">(S 24/25) AI for Vision-Language Pre-training in Medical Imaging (IN2107)</a></li> 
+            </ul>
+          </li>
+          <li>Conference Reviewer:
+            <ul>
+              <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor: 39.89)</li>
+              <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2025</li> 
+              <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024</li> 
+            </ul>
+          </li>
+          <li>Activities:
+            <ul>
+              <li><a href="https://iplab.dmi.unict.it/icvss2024/" target="_blank">International Summer School in Computer Vision (ICVSS)</a>, Sicily, 2024</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
 
+    <!-- Visitor Map -->
+    <div style="text-align: center; margin: 2rem 0;">
+      <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=340&t=tt&d=LpkeCEOsLWcfMT_2Q--JRRvMAuxzTlQA23wCR6roJiY&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff&w=400'></script>
+    </div>
+  </div>
 
-      </td>
-    </tr>
-  </table>
+  <footer>
+    <p>© Jun Li | Homepage</p>
+    <p style="font-size:small;">
+      Design and source code from <a style="font-size:small;" href="https://jonbarron.info", target="_blank">Jon Barron's website</a>.
+    </p>
+  </footer>
+
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling for navigation links with navbar offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const targetPosition = target.offsetTop - navbarHeight - 20; // 20px extra padding
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Dark theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      body.classList.add('dark-theme');
+      themeIcon.textContent = '☀️';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      
+      if (body.classList.contains('dark-theme')) {
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
 </body>
 
+</html>
 </html>
