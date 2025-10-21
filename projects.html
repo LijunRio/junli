@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects | Jun Li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/doraemeng.JPG">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <style>
+    /* ...copy your style from index.html... */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: #fafafa;
+      color: #2c3e50;
+    }
+    .navbar {
+      background: linear-gradient(135deg, #e8f4fd 0%, #d1e7dd 100%);
+      box-shadow: 0 2px 15px rgba(52, 152, 219, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0;
+    }
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 2rem;
+    }
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2980b9;
+      text-decoration: none;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.4rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    .nav-link:hover {
+      background-color: #3498db;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .theme-toggle {
+      background: none;
+      border: 2px solid #34495e;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #34495e;
+      transition: all 0.3s ease;
+      margin-left: 1rem;
+    }
+    .theme-toggle:hover {
+      background-color: #34495e;
+      color: white;
+      transform: rotate(180deg);
+    }
+    .main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    heading {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #2980b9;
+      display: block;
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #e8f4fd;
+    }
+    /* Project Cards */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      width: 100%;
+    }
+    .project-card {
+      background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.15);
+      width: 90%;
+      max-width: 800px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 0 auto;
+    }
+    .project-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 8px 24px rgba(52, 152, 219, 0.25);
+    }
+    .project-card img {
+      width: 220px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 2rem;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.25);
+      flex-shrink: 0;
+    }
+    .project-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2980b9;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .project-desc {
+      font-size: 1em;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .project-links {
+      text-align: left;
+    }
+    .project-links a {
+      margin-right: 1rem;
+      color: #3498db;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .project-links a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+    /* Dark theme styles */
+    body.dark-theme {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-theme .navbar {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    }
+    body.dark-theme .nav-logo {
+      color: #64b5f6;
+    }
+    body.dark-theme .nav-link {
+      color: #90caf9;
+    }
+    body.dark-theme .nav-link:hover {
+      background-color: #1976d2;
+      color: white;
+    }
+    body.dark-theme .theme-toggle {
+      border-color: #90caf9;
+      color: #90caf9;
+    }
+    body.dark-theme .theme-toggle:hover {
+      background-color: #90caf9;
+      color: #121212;
+    }
+    body.dark-theme .main-content {
+      background: none;
+      color: #e0e0e0;
+    }
+    body.dark-theme heading {
+      color: #64b5f6;
+      border-bottom-color: #2d2d2d;
+    }
+    body.dark-theme .project-card {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    body.dark-theme .project-title {
+      color: #64b5f6;
+    }
+    body.dark-theme .project-desc {
+      color: #e0e0e0;
+    }
+    body.dark-theme .project-links a {
+      color: #64b5f6;
+    }
+    body.dark-theme .project-links a:hover {
+      color: #90caf9;
+    }
+    @media (max-width: 900px) {
+      .project-card {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 98%;
+        padding: 1rem;
+      }
+      .project-card img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+      }
+      .project-info {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html#home" class="nav-logo">Jun Li</a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#news" class="nav-link">News</a></li>
+        <li><a href="index.html#bio" class="nav-link">About</a></li>
+        <li><a href="index.html#publications" class="nav-link">Publications</a></li>
+        <li><a href="index.html#others" class="nav-link">Services</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+      </ul>
+      <div style="display: flex; align-items: center;">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content">
+    <!-- <heading>Projects</heading> -->
+    <div class="projects-grid">
+      <!-- Example Project Card -->
+
+      <div class="project-card">
+        <img src="images/projects/ultrasound-report.png" alt="Reconstruct 3D CT from X-rays">
+        <div class="project-info">
+          <div class="project-title">Medical Report Generation</div>
+          <div class="project-desc">
+            <ul>
+              <li>This project focuses on exploring techniques for generating medical reports from imaging data.</li>
+              <li>Project worked at Shenzhen Institutes of Advanced Technology and Techinical University of Munich</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <!-- <a href="https://github.com/LijunRio/A-Self-Guided-Framework" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/A-Self-Guided-Framework"></span> -->
+            <a href="https://github.com/LijunRio/Ultrasound-Report-Generation" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/Ultrasound-Report-Generation"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="images/projects/xray-ct.gif" alt="Reconstruct 3D CT from X-rays">
+        <div class="project-info">
+          <div class="project-title">Reconstruct 3D CT from X-rays</div>
+          <div class="project-desc">
+            <ul>
+              <li>This project focuses on exploring techniques for reconstructing 3D CT images from 2D X-rays.</li>
+              <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/LijunRio/Xrays_CT" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/Xrays_CT"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <img src="images/projects/cobe_angle.png" alt="Cobb Angle Project">
+        <div class="project-info">
+          <div class="project-title">Spine Cobb Angle Measurement</div>
+          <div class="project-desc">
+            <ul>
+                <li>Automatic and semi-automatic Cobb angle measurement tool for spinal X-ray images (coronal & sagittal planes), implemented with OpenCV + NumPy.</li>
+                <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/LijunRio/Spine-cobb-angle-measurement" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/Spine-cobb-angle-measurement"></span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/projects/ultragen.png" alt="AG-KD Project">
+        <div class="project-info">
+          <div class="project-title">Text to Image Generation</div>
+          <div class="project-desc">
+            <ul>
+              <li>Using GAN to generate ultrasound scan from ultrasound repots.</li>
+              <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+           <div class="project-links">
+            <a href="https://github.com/LijunRio/UltraGAN" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/UltraGAN"></span>
+          </div>
+        </div>
+      </div>
+
+  <footer>
+    <p>© Jun Li | Projects</p>
+    <p style="font-size:small;">
+      Design and source code from <a style="font-size:small;" href="https://jonbarron.info" target="_blank">Jon Barron's website</a>.
+    </p>
+  </footer>
+  <script>
+    // Dark theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      body.classList.add('dark-theme');
+      themeIcon.textContent = '☀️';
+    }
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      if (body.classList.contains('dark-theme')) {
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+    // 自动抓取并显示 GitHub star 数
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('.github-stars').forEach(function(el) {
+        var repo = el.getAttribute('data-repo');
+        if (repo) {
+          fetch('https://api.github.com/repos/' + repo)
+            .then(response => response.json())
+            .then(data => {
+              if (data.stargazers_count !== undefined) {
+                el.innerHTML = 'Github ⭐ ' + data.stargazers_count;
+              }
+            })
+            .catch(() => {
+              el.innerHTML = '';
+            });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

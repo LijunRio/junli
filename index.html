@@ -70,7 +70,7 @@
     .nav-menu {
       display: flex;
       list-style: none;
-      gap: 2rem;
+      gap: 1.2rem; /* 原来是2rem，改小一点 */
     }
     
     .nav-link {
@@ -531,6 +531,91 @@
       color: rgba(100, 181, 246, 0.6);
     }
     
+    /* Project Cards (补充卡片样式) */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: stretch; /* 改为 stretch 让卡片撑满容器 */
+      width: 100%;
+    }
+    .project-card {
+      background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.15);
+      width: 100%;           /* 与 paper-item 一致 */
+      max-width: none;        /* 移除最大宽度限制 */
+      padding: 1rem 0 1rem 1rem; /* 与 paper-item 一致 */
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 0 0 0 0;       /* 与 paper-item 一致 */
+    }
+    .project-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 8px 24px rgba(52, 152, 219, 0.25);
+    }
+    .project-card img {
+      width: 220px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 2rem;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.25);
+      flex-shrink: 0;
+    }
+    .project-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2980b9;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .project-desc {
+      font-size: 1em;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .project-links {
+      text-align: left;
+    }
+    .project-links a {
+      margin-right: 1rem;
+      color: #3498db;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .project-links a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .project-card {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;      /* 保持一致 */
+        padding: 0.8rem;  /* 与 paper-item 一致 */
+      }
+      .project-card img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+      }
+      .project-info {
+        width: 100%;
+      }
+    }
     /* Responsive design */
     @media (max-width: 768px) {
       .nav-menu {
@@ -583,6 +668,47 @@
     section {
       scroll-margin-top: 70px; /* Reduced from 80px due to smaller navbar height */
     }
+    
+    .github-stars {
+      display: inline-block;
+      font-size: 1em;
+      color: #f39c12;
+      font-weight: 600;
+      margin-left: 0.5em;
+      vertical-align: middle;
+    }
+    
+    /* ...existing code... */
+  body.dark-theme .project-card {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    color: #e0e0e0;
+  }
+  body.dark-theme .project-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  body.dark-theme .project-card img {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+  body.dark-theme .project-title {
+    color: #64b5f6;
+  }
+  body.dark-theme .project-desc {
+    color: #e0e0e0;
+  }
+  body.dark-theme .project-links {
+    color: #e0e0e0;
+  }
+  body.dark-theme .project-links a {
+    color: #64b5f6;
+  }
+  body.dark-theme .project-links a:hover {
+    color: #90caf9;
+  }
+  body.dark-theme .github-stars {
+    color: #ffd700;
+  }
+  /* ...existing code... */
   </style>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/doraemeng.JPG">
@@ -622,8 +748,9 @@
         <li><a href="#news" class="nav-link">News</a></li>
         <li><a href="#bio" class="nav-link">About</a></li>
         <li><a href="#publications" class="nav-link">Publications</a></li>
-        <li><a href="#others" class="nav-link">Others</a></li>
-      </ul>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+
       <div style="display: flex; align-items: center;">
         <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
           <span id="theme-icon">🌙</span>
@@ -888,8 +1015,7 @@
           <div class="paper-item-content">
             <papertitle>Design as Desired: Utilizing Visual Question Answering for Multimodal Pre-training</papertitle>
             <p>
-              <em>Accepted by MICCAI 2024.</em>
-              <br><br>
+              <em>
               Tongkun Su*, <strong>Jun Li*</strong>, Xi Zhang, Haibo Jin, Hao Chen, Qiong Wang, Faqin Lv, Baoliang Zhao, Yin Hu
               <br><br>
               [<a href="https://arxiv.org/pdf/2404.00226.pdf" target="_blank">paper</a>]
@@ -956,11 +1082,67 @@
       </div>
     </section>
 
-    <!-- Others Section -->
-    <section id="others">
-      <!-- <heading>📌Others</heading> -->
-    <heading>Others</heading>
-      <div class="others-content">
+     <!-- Projects Section (from projects.html) -->
+    <section id="projects">
+    <heading>Projects</heading>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="images/projects/xray-ct.gif" alt="Reconstruct 3D CT from X-rays">
+        <div class="project-info">
+          <div class="project-title">Reconstruct 3D CT from X-rays</div>
+          <div class="project-desc">
+            <ul>
+              <li>This project focuses on exploring techniques for reconstructing 3D CT images from 2D X-rays.</li>
+              <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/LijunRio/Xrays_CT" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/Xrays_CT"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <img src="images/projects/cobe_angle.png" alt="Cobb Angle Project">
+        <div class="project-info">
+          <div class="project-title">Spine Cobb Angle Measurement</div>
+          <div class="project-desc">
+            <ul>
+                <li>Automatic and semi-automatic Cobb angle measurement tool for spinal X-ray images (coronal & sagittal planes), implemented with OpenCV + NumPy.</li>
+                <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/LijunRio/Spine-cobb-angle-measurement" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/Spine-cobb-angle-measurement"></span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/projects/ultragen.png" alt="AG-KD Project">
+        <div class="project-info">
+          <div class="project-title">Text to Image Generation</div>
+          <div class="project-desc">
+            <ul>
+              <li>Using GAN to generate ultrasound scan from ultrasound repots.</li>
+              <li>Project worked at Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences.</li>
+            </ul>
+          </div>
+           <div class="project-links">
+            <a href="https://github.com/LijunRio/UltraGAN" target="_blank">Github Repo</a>
+            <span class="github-stars" data-repo="LijunRio/UltraGAN"></span>
+          </div>
+        </div>
+      </div>
+      <!-- ...更多项目... -->
+    </div>
+  </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <heading>Services</heading>
+      <div class="services-content">
         <ul>
           <li>Teaching:
             <ul>
@@ -1052,6 +1234,25 @@
         themeIcon.textContent = '🌙';
         localStorage.setItem('theme', 'light');
       }
+    });
+    
+    // 自动抓取并显示 GitHub star 数
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('.github-stars').forEach(function(el) {
+        var repo = el.getAttribute('data-repo');
+        if (repo) {
+          fetch('https://api.github.com/repos/' + repo)
+            .then(response => response.json())
+            .then(data => {
+              if (data.stargazers_count !== undefined) {
+                el.innerHTML = '[Github ⭐ ' + data.stargazers_count + ']';
+              }
+            })
+            .catch(() => {
+              el.innerHTML = '';
+            });
+        }
+      });
     });
   </script>
 </body>
