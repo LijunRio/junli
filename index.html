@@ -70,15 +70,15 @@
     .nav-menu {
       display: flex;
       list-style: none;
-      gap: 1.2rem; /* 原来是2rem，改小一点 */
+      gap: 0.8rem; /* Reduced from 1.2rem */
     }
     
     .nav-link {
       text-decoration: none;
       color: #34495e; /* Sophisticated dark gray-blue */
       font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0.4rem 1rem;
+      font-size: 1rem; /* Reduced from 1.1rem */
+      padding: 0.4rem 0.8rem; /* Reduced horizontal padding from 1rem to 0.8rem */
       border-radius: 25px;
       transition: all 0.3s ease;
     }
@@ -118,13 +118,71 @@
       font-size: 1.2rem;
       color: #34495e;
       transition: all 0.3s ease;
-      margin-left: 1rem;
+      margin-left: 0.5rem; /* Reduced from 1rem */
     }
     
     .theme-toggle:hover {
       background-color: #34495e;
       color: white;
       transform: rotate(180deg);
+    }
+    
+    /* Luck icon styling - Back in navbar */
+    .luck-icon {
+      width: 40px;
+      height: 40px;
+      margin-left: 0.5rem;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+    }
+    
+    .luck-icon:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 4px 12px rgba(243, 156, 18, 0.5);
+    }
+    
+    /* Luck bubble animation */
+    .luck-bubble {
+      position: fixed;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #f39c12;
+      pointer-events: none;
+      z-index: 9999;
+      animation: bubbleFloatRight 2s ease-out forwards;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes bubbleFloatRight {
+      0% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(80px) translateY(60px) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(150px) translateY(60px) scale(0.8);
+      }
+    }
+    
+    /* Dark theme for luck bubble */
+    body.dark-theme .luck-bubble {
+      color: #ffd700;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Dark theme for luck icon */
+    body.dark-theme .luck-icon {
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+    }
+    
+    body.dark-theme .luck-icon:hover {
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.6);
     }
     
     /* Main content styling */
@@ -661,12 +719,15 @@
       
       .nav-link {
         font-size: 1rem; /* Slightly smaller on mobile */
+        padding: 0.4rem 0.6rem; /* Even smaller padding on mobile */
       }
-    }
-    
-    /* Add scroll margin to sections to account for navbar */
-    section {
-      scroll-margin-top: 70px; /* Reduced from 80px due to smaller navbar height */
+      
+      /* Adjust luck icon on mobile */
+      .luck-icon {
+        width: 35px;
+        height: 35px;
+        margin-left: 0.3rem;
+      }
     }
     
     .github-stars {
@@ -750,11 +811,13 @@
         <li><a href="#publications" class="nav-link">Publications</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#services" class="nav-link">Services</a></li>
+      </ul>
 
       <div style="display: flex; align-items: center;">
         <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
           <span id="theme-icon">🌙</span>
         </button>
+        <img src="images/icons/luck.gif" alt="Luck Icon" class="luck-icon" id="luck-icon" title="Good Luck!">
         <div class="nav-toggle" id="nav-toggle">
           <span></span>
           <span></span>
@@ -1082,7 +1145,7 @@
       </div>
     </section>
 
-     <!-- Projects Section (from projects.html) -->
+     <!-- Projects Section (补充卡片样式) -->
     <section id="projects">
     <heading>Projects</heading>
     <div class="projects-grid">
@@ -1234,6 +1297,35 @@
         themeIcon.textContent = '🌙';
         localStorage.setItem('theme', 'light');
       }
+    });
+    
+    // Luck icon click effect
+    const luckIcon = document.getElementById('luck-icon');
+    
+    luckIcon.addEventListener('click', function(e) {
+      // Create bubble element
+      const bubble = document.createElement('div');
+      bubble.className = 'luck-bubble';
+      bubble.textContent = 'Luck +1';
+      
+      // Position the bubble near the click
+      const rect = luckIcon.getBoundingClientRect();
+      bubble.style.left = (rect.left + rect.width / 2) + 'px';
+      bubble.style.top = rect.top + 'px';
+      
+      // Add to body
+      document.body.appendChild(bubble);
+      
+      // Remove after animation completes
+      setTimeout(() => {
+        bubble.remove();
+      }, 1500);
+      
+      // Add a little bounce effect to the icon
+      luckIcon.style.transform = 'scale(1.3) rotate(15deg)';
+      setTimeout(() => {
+        luckIcon.style.transform = '';
+      }, 200);
     });
     
     // 自动抓取并显示 GitHub star 数
