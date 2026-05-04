@@ -433,7 +433,8 @@
       margin: 1rem 0 0 0;
     }
     
-    .others-content ul {
+    .others-content ul,
+    .services-content ul {
       margin: 0;
       padding-left: 1.5rem;
     }
@@ -442,23 +443,27 @@
       padding-left: 0;
     }
     
-    .others-content li {
+    .others-content li,
+    .services-content li {
       margin-bottom: 0.3rem; /* Reduced from 0.5rem */
       line-height: 1.4; /* Reduced line height */
     }
     
-    .others-content > ul > li {
+    .others-content > ul > li,
+    .services-content > ul > li {
       font-weight: 600;
       color: #2980b9; /* Consistent blue */
       margin-bottom: 0.5rem;
     }
     
-    .others-content ul ul {
+    .others-content ul ul,
+    .services-content ul ul {
       margin-top: 0.3rem; /* Reduced from 0.5rem */
       padding-left: 2rem;
     }
     
-    .others-content ul ul li {
+    .others-content ul ul li,
+    .services-content ul ul li {
       font-weight: normal;
       color: #2c3e50; /* Match body color */
       line-height: 1.4;
@@ -572,11 +577,13 @@
       color: #90caf9;
     }
     
-    body.dark-theme .others-content > ul > li {
+    body.dark-theme .others-content > ul > li,
+    body.dark-theme .services-content > ul > li {
       color: #64b5f6;
     }
     
-    body.dark-theme .others-content ul ul li {
+    body.dark-theme .others-content ul ul li,
+    body.dark-theme .services-content ul ul li {
       color: #e0e0e0;
     }
     
@@ -870,14 +877,20 @@
         <div class="news-container">
           <div class="news-item">
             <p>
-              <strong>[09.2025]</strong>&nbsp;
-              <em>Our paper <strong>NOVA Benchmark</strong> accepted as <strong><span style="color:red;">Oral</span></strong> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track!</em>
+              <strong>[05.2026]</strong>&nbsp;
+              <em>Our paper <strong>Dynamic Decision Learning (DDL)</strong> was accepted by <strong><span style="color:red; font-weight:bold;">ICML 2026</span></strong>!</em>
             </p>
           </div>
           <div class="news-item">
             <p>
               <strong>[09.2025]</strong>&nbsp;
-              <em>Our paper <strong>K2Sight</strong> received <span style="color:red;">Early Accept</span> by WACV 2026 (<b>Top 6.4%</b>)!</em>
+              <em>Our paper <strong>NOVA Benchmark</strong> accepted as <strong><span style="color:red; font-weight:bold;">Oral</span></strong> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track!</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[09.2025]</strong>&nbsp;
+              <em>Our paper <strong>K2Sight</strong> received <span style="color:red; font-weight:bold;">Early Accept</span> by <strong>WACV 2026</strong> (<b>Top 6.4%</b>)!</em>
             </p>
           </div>
           <div class="news-item">
@@ -940,6 +953,23 @@
       <heading>Publications</heading>
       <div class="paper-container">
         <!-- Paper item -->
+
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/DDL.gif" alt="DDL paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Dynamic Decision Learning: Test-Time Evolution for Abnormality Grounding in Rare Diseases</papertitle>
+            <p>
+              <em>Accepted by <strong><span style="color:red; font-weight:bold;">ICML 2026</span></strong>.</em>
+              <br><br>
+              <strong>Jun Li</strong>, Mingxuan Liu, Jiazhen Pan, Che Liu, Wenjia Bai, Cosmin I. Bercea, Julia A. Schnabel
+              <br><br>
+              [<a href="https://arxiv.org/abs/2604.24972" target="_blank">paper</a>]
+              [<a href="https://lijunrio.github.io/DDL/" target="_blank">homepage</a>]
+            </p>
+          </div>
+        </div>
           
         <div class="paper-item">
           <div class="paper-item-img">
@@ -948,6 +978,8 @@
           <div class="paper-item-content">
             <papertitle>ReEvalMed: Rethinking Medical Report Evaluation by Aligning Metrics with Real-World Clinical Judgment</papertitle>
             <p>
+              <em>Accepted by <strong>EMNLP 2025</strong>.</em>
+              <br><br>
               Ruochen Li*, <strong>Jun Li*</strong>, Bailiang Jian, Kun Yuan, Youxiang Zhu
               <br><br>
               [<a href="https://arxiv.org/pdf/2510.00280" target="_blank">paper</a>]
@@ -977,7 +1009,7 @@
           <div class="paper-item-content">
             <papertitle>Knowledge to Sight: Reasoning over Visual Attributes via Knowledge Decomposition for Abnormality Grounding</papertitle>
             <p>
-              <em>Accepted by WACV 2026 (<span style="color:red;">Early Accept</span>, Top 6.4%).</em>
+              <em>Accepted by <strong>WACV 2026</strong> (<span style="color:red; font-weight:bold;">Early Accept</span>, Top 6.4%).</em>
               <br><br>
               <strong>Jun Li</strong>, Che Liu, Wenjia Bai, Mingxuan Liu, Rossella Arcucci, Cosmin I. Bercea, Julia A. Schnabel
               <br><br>
@@ -995,7 +1027,7 @@
           <div class="paper-item-content">
             <papertitle>NOVA: A Benchmark for Anomaly Localization and Clinical Reasoning in Brain MRI</papertitle>
             <p>
-              <em>Accepted as <span style="color:red;">Oral</span> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track.</em>
+              <em>Accepted as <span style="color:red; font-weight:bold;">Oral</span> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track.</em>
               <br><br>
               Cosmin I. Bercea, <strong>Jun Li</strong>, Philipp Raffler, Evamaria O. Riedel, Lena Schmitzer, Angela Kurz, Felix Bitzer, Paula Roßmüller, Julian Canisius, Mirjam L. Beyrle, Che Liu, Wenjia Bai, Bernhard Kainz, Julia A. Schnabel, Benedikt Wiestler.
               <br><br>
@@ -1030,6 +1062,8 @@
           <div class="paper-item-content">
             <papertitle>Organizing Unstructured Image Collections using Natural Language</papertitle>
             <p>
+              <em>Accepted by <strong>CVPR 2026 Findings</strong>.</em>
+              <br><br>
               Mingxuan Liu, Zhun Zhong, <strong>Jun Li</strong>, Gianni Franchi, Subhankar Roy, Elisa Ricci.
               <br><br>
               [<a href="https://arxiv.org/abs/2410.05217" target="_blank">paper</a>]
@@ -1060,7 +1094,7 @@
           <div class="paper-item-content">
             <papertitle>Language Models Meet Anomaly Detection for Better Interpretability and Generalizability</papertitle>
             <p>
-              <em>Accepted by MMMI 2024.</em>
+              <em>Accepted by <strong>MMMI 2024</strong>.</em>
               <br><br>
               <strong>Jun Li</strong>, Su Hwan Kim, Philip Mller, Lina Felsner, Daniel Rueckert, Benedikt Wiestler, Julia A. Schnabel, Cosmin I. Bercea.
               <br><br>
@@ -1113,8 +1147,8 @@
           <div class="paper-item-content">
             <papertitle>A Self-guided Framework for Radiology Report Generation</papertitle>
             <p>
-              <em>Accepted by MICCAI 2022.</em>
-              <em>(<span style="font-style: italic; color: red;">Early Accept</span>)</em>
+              <em>Accepted by <strong>MICCAI 2022</strong>.</em>
+              <em>(<span style="font-style: italic; color: red; font-weight:bold;">Early Accept</span>)</em>
               <br>
               <em>(Student Travel Award, Top 5%)</em>
               <br><br>
@@ -1134,7 +1168,7 @@
           <div class="paper-item-content">
             <papertitle>XctNet: Reconstruction network of volumetric images from a single X-ray image</papertitle>
             <p>
-              <em>Computerized Medical Imaging and Graphics (<b>CMIG</b>), 2022.</em>
+              <em><strong>Computerized Medical Imaging and Graphics (CMIG), 2022</strong>.</em>
               <br><br>
               Zhiqiang Tan, <strong>Jun Li</strong>, Huiren Tao, Shibo Li, Ying Hu.
               <br><br>
@@ -1235,8 +1269,8 @@
           <li>Conference Reviewer:
             <ul>
               <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor:28.0)</li>
-              <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2025</li> 
-              <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024</li> 
+              <li>International Conference on Machine Learning (ICML) 2026</li>
+              <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024, 2025, 2026</li> 
             </ul>
           </li>
           <li>Activities:
