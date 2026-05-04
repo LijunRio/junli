@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Jun Li - Ph.D. Student | Machine Learning | TUM</title>
+  <title>Jun Li - Ph.D. Student | Vision-Language Models | TUM</title>
   <meta name="author" content="Jun Li">
-  <meta name="description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Computer Vision and AI.">
+  <meta name="description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Vision-Language Models and Medical Imaging.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Open Graph Meta Tags for Social Media -->
-  <meta property="og:title" content="Jun Li - Ph.D. Student | Machine Learning | TUM">
-  <meta property="og:description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Computer Vision and AI.">
+  <meta property="og:title" content="Jun Li - Ph.D. Student | Vision-Language Models | TUM">
+  <meta property="og:description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Vision-Language Models and Medical Imaging.">
   <meta property="og:image" content="https://lijunrio.github.io/junli/images/JunLi2.jpg">
   <meta property="og:image:alt" content="Jun Li Profile Photo">
   <meta property="og:url" content="https://lijunrio.github.io/junli/">
@@ -18,12 +18,12 @@
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Jun Li - Ph.D. Student | Machine Learning | TUM">
-  <meta name="twitter:description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Computer Vision and AI.">
+  <meta name="twitter:title" content="Jun Li - Ph.D. Student | Vision-Language Models | TUM">
+  <meta name="twitter:description" content="Jun Li - Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning. Research in Vision-Language Models and Medical Imaging.">
   <meta name="twitter:image" content="https://lijunrio.github.io/junli/images/JunLi2.jpg">
   
   <!-- Additional SEO Meta Tags -->
-  <meta name="keywords" content="Jun Li, Machine Learning, Computer Vision, PhD Student, TUM, Technical University of Munich, AI Research">
+  <meta name="keywords" content="Jun Li, Vision-Language Models, Medical Imaging, Multimodal AI, Computer Vision, PhD Student, TUM, Technical University of Munich">
   <meta name="robots" content="index, follow">
   
   <style>
@@ -70,15 +70,15 @@
     .nav-menu {
       display: flex;
       list-style: none;
-      gap: 0.8rem; /* Reduced from 1.2rem */
+      gap: 0.45rem; /* Reduced from 1.2rem */
     }
     
     .nav-link {
       text-decoration: none;
       color: #34495e; /* Sophisticated dark gray-blue */
       font-weight: 700;
-      font-size: 1rem; /* Reduced from 1.1rem */
-      padding: 0.4rem 0.8rem; /* Reduced horizontal padding from 1rem to 0.8rem */
+      font-size: 0.95rem; /* Reduced from 1.1rem */
+      padding: 0.35rem 0.55rem; /* Reduced horizontal padding from 1rem to 0.8rem */
       border-radius: 25px;
       transition: all 0.3s ease;
     }
@@ -733,6 +733,142 @@
       color: #2980b9;
       text-decoration: underline;
     }
+
+    .teaching-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      width: 100%;
+    }
+
+    .teaching-card {
+      background: linear-gradient(135deg, #fbfbf7 0%, #eef7f2 100%);
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(47, 143, 131, 0.13);
+    }
+
+    .teaching-card:hover {
+      box-shadow: 0 8px 22px rgba(47, 143, 131, 0.2);
+    }
+
+    .teaching-card img {
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+    .teaching-card .project-title {
+      color: #24786f;
+    }
+
+    .teaching-card .project-links a {
+      color: #24786f;
+    }
+
+    .teaching-card .project-links a:hover {
+      color: #1f5f59;
+    }
+
+    .records-strip {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding: 0.3rem 0.2rem 1rem 0.2rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: #5f7f96 rgba(95, 127, 150, 0.14);
+    }
+
+    .records-strip::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .records-strip::-webkit-scrollbar-track {
+      background: rgba(95, 127, 150, 0.14);
+      border-radius: 999px;
+    }
+
+    .records-strip::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #5f7f96, #91aebf);
+      border-radius: 999px;
+    }
+
+    .record-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background: linear-gradient(135deg, #f9fbfc 0%, #eef4f7 100%);
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(95, 127, 150, 0.13);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .record-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(95, 127, 150, 0.2);
+    }
+
+    .record-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .record-info {
+      padding: 0.85rem;
+    }
+
+    .record-title {
+      color: #35596f;
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.45rem;
+      text-align: left;
+    }
+
+    .record-title-link {
+      color: inherit;
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 0.38rem;
+      text-decoration: none;
+    }
+
+    .record-title-link:hover {
+      color: #24485e;
+      text-decoration: underline;
+    }
+
+    .youtube-mark {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 13px;
+      margin-top: 0.1rem;
+      border-radius: 4px;
+      background: #5f7f96;
+      position: relative;
+    }
+
+    .youtube-mark::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      width: 0;
+      height: 0;
+      border-top: 3.5px solid transparent;
+      border-bottom: 3.5px solid transparent;
+      border-left: 5px solid #ffffff;
+    }
+
+    .record-meta {
+      color: #526a78;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      text-align: left;
+    }
+
     @media (max-width: 900px) {
       .project-card {
         flex-direction: column;
@@ -746,6 +882,9 @@
         width: 100%;
         max-width: 350px;
         height: auto;
+      }
+      .teaching-card img {
+        height: 160px;
       }
       .project-info {
         width: 100%;
@@ -845,11 +984,54 @@
   body.dark-theme .project-card:hover {
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   }
+  body.dark-theme .teaching-card {
+    background: linear-gradient(135deg, #181f1f 0%, #202b29 100%);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.34);
+  }
+  body.dark-theme .teaching-card:hover {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.48);
+  }
   body.dark-theme .project-card img {
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
   body.dark-theme .project-title {
     color: #64b5f6;
+  }
+  body.dark-theme .teaching-card .project-title,
+  body.dark-theme .teaching-card .project-links a {
+    color: #70d6c8;
+  }
+  body.dark-theme .teaching-card .project-links a:hover {
+    color: #a2eee5;
+  }
+  body.dark-theme .records-strip {
+    scrollbar-color: #8eb5ca rgba(142, 181, 202, 0.14);
+  }
+  body.dark-theme .records-strip::-webkit-scrollbar-track {
+    background: rgba(142, 181, 202, 0.14);
+  }
+  body.dark-theme .records-strip::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #8eb5ca, #b5cad7);
+  }
+  body.dark-theme .record-card {
+    background: linear-gradient(135deg, #1b2024 0%, #222b31 100%);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.34);
+  }
+  body.dark-theme .record-card:hover {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.48);
+  }
+  body.dark-theme .record-title,
+  body.dark-theme .record-title-link {
+    color: #9fd0e8;
+  }
+  body.dark-theme .record-title-link:hover {
+    color: #c4e8f6;
+  }
+  body.dark-theme .youtube-mark {
+    background: #9fd0e8;
+  }
+  body.dark-theme .record-meta {
+    color: #c2d4de;
   }
   body.dark-theme .project-desc {
     color: #e0e0e0;
@@ -891,7 +1073,7 @@
       "https://github.com/LijunRio",
       "https://www.linkedin.com/in/jun-li-657295290/"
     ],
-    "description": "Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning, specializing in Computer Vision and AI Research"
+    "description": "Ph.D. Student at Technical University of Munich, Munich Center for Machine Learning, specializing in Vision-Language Models and Medical Imaging"
   }
   </script>
 </head>
@@ -903,9 +1085,9 @@
       <a href="#home" class="nav-logo">Jun Li</a>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#news" class="nav-link">News</a></li>
-        <li><a href="#bio" class="nav-link">About</a></li>
         <li><a href="#publications" class="nav-link">Publications</a></li>
+        <li><a href="#teaching" class="nav-link">Teaching</a></li>
+        <li><a href="#records" class="nav-link">Records</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#services" class="nav-link">Services</a></li>
       </ul>
@@ -986,7 +1168,13 @@
           <div class="news-item">
             <p>
               <strong>[04.2026]</strong>&nbsp;
-              <em>Visited <a href="https://profiles.imperial.ac.uk/w.bai" target="_blank"><strong>Prof. Wenjia Bai's group</strong></a> at Imperial College London and joined the Google visit.</em>
+              <em>Visited <a href="https://profiles.imperial.ac.uk/w.bai" target="_blank"><strong>Prof. Wenjia Bai's group</strong></a> at Imperial College London and was also invited for a visit at Google.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[03.2026]</strong>&nbsp;
+              <em>Organizing <a href="https://multitab-miccai-2026.github.io/" target="_blank"><strong>MultiTab 2026</strong></a>, the MICCAI Workshop on Multimodal Learning with Medical Tabular Data.</em>
             </p>
           </div>
           <div class="news-item">
@@ -1293,6 +1481,98 @@
       </div>
     </section>
 
+    <!-- Teaching Section -->
+    <section id="teaching">
+      <heading>Teaching</heading>
+      <div class="teaching-grid">
+        <div class="project-card teaching-card">
+          <img src="images/projects/teaching-seminar.png" alt="AI for Vision-Language Models in Medical Imaging teaching">
+          <div class="project-info">
+            <div class="project-title">AI for Vision-Language Models in Medical Imaging</div>
+            <div class="project-desc">
+              <ul>
+                <li>(S 25) Master seminar, Technical University of Munich.</li>
+                <li>Course ID: IN2107, IN45069.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">Course Page</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card teaching-card">
+          <img src="images/projects/teaching-vlp-seminar.png" alt="AI for Vision-Language Pre-training in Medical Imaging teaching">
+          <div class="project-info">
+            <div class="project-title">AI for Vision-Language Pre-training in Medical Imaging</div>
+            <div class="project-desc">
+              <ul>
+                <li>(S 24/25) Master seminar, Technical University of Munich.</li>
+                <li>Course ID: IN2107.</li>
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">Course Page</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Records Section -->
+    <section id="records">
+      <heading>Records</heading>
+      <div class="records-strip">
+        <div class="record-card">
+          <a href="https://www.youtube.com/watch?v=qJ0a7DE1rCs" target="_blank">
+            <img src="https://i2.ytimg.com/vi/qJ0a7DE1rCs/hqdefault.jpg" alt="K2Sight WACV 2026 record">
+          </a>
+          <div class="record-info">
+            <div class="record-title">
+              <a class="record-title-link" href="https://www.youtube.com/watch?v=qJ0a7DE1rCs" target="_blank"><span class="youtube-mark" aria-hidden="true"></span>K2Sight: Knowledge-Guided Abnormality Grounding</a>
+            </div>
+            <div class="record-meta">WACV 2026 presentation</div>
+          </div>
+        </div>
+
+        <div class="record-card">
+          <a href="https://www.youtube.com/watch?v=eu-yeWdRgoc" target="_blank">
+            <img src="https://i2.ytimg.com/vi/eu-yeWdRgoc/hqdefault.jpg" alt="How to read and review a paper record">
+          </a>
+          <div class="record-info">
+            <div class="record-title">
+              <a class="record-title-link" href="https://www.youtube.com/watch?v=eu-yeWdRgoc" target="_blank"><span class="youtube-mark" aria-hidden="true"></span>How to Read a Paper? How to Review a Paper?</a>
+            </div>
+            <div class="record-meta">Master seminar lecture record</div>
+          </div>
+        </div>
+
+        <div class="record-card">
+          <a href="https://www.youtube.com/watch?v=WDvDeD7nnP8" target="_blank">
+            <img src="https://i4.ytimg.com/vi/WDvDeD7nnP8/hqdefault.jpg" alt="Introduction to VLMs lecture record">
+          </a>
+          <div class="record-info">
+            <div class="record-title">
+              <a class="record-title-link" href="https://www.youtube.com/watch?v=WDvDeD7nnP8" target="_blank"><span class="youtube-mark" aria-hidden="true"></span>Lecture 1: Introduction to VLMs</a>
+            </div>
+            <div class="record-meta">AI for VLMs in Medical Imaging</div>
+          </div>
+        </div>
+
+        <div class="record-card">
+          <a href="https://www.youtube.com/@junli2117" target="_blank">
+            <img src="https://i.ytimg.com/vi/WDvDeD7nnP8/hqdefault.jpg" alt="Jun Li YouTube channel">
+          </a>
+          <div class="record-info">
+            <div class="record-title">
+              <a class="record-title-link" href="https://www.youtube.com/@junli2117" target="_blank"><span class="youtube-mark" aria-hidden="true"></span>More Records on YouTube</a>
+            </div>
+            <div class="record-meta">Rio channel</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
      <!-- Projects Section (补充卡片样式) -->
     <section id="projects">
     <heading>Projects</heading>
@@ -1374,17 +1654,16 @@
       <heading>Services</heading>
       <div class="services-content">
         <ul>
-          <li>Teaching:
-            <ul>
-              <li><a href="https://github.com/LijunRio/Master-Seminar-AI-for-Vision-Language-Models-in-Medical-Imaging-IN2107-IN45069-" target="_blank">(S 25) AI for Vision-Language Models in Medical Imaging (IN2107, IN45069)</a></li> 
-              <li><a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">(S 24/25) AI for Vision-Language Pre-training in Medical Imaging (IN2107)</a></li> 
-            </ul>
-          </li>
           <li>Conference Reviewer:
             <ul>
               <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor:28.0)</li>
               <li>International Conference on Machine Learning (ICML) 2026</li>
               <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024, 2025, 2026</li> 
+            </ul>
+          </li>
+          <li>Workshop Organizer:
+            <ul>
+              <li><a href="https://multitab-miccai-2026.github.io/" target="_blank">MultiTab 2026</a>: MICCAI Workshop on Multimodal Learning with Medical Tabular Data</li>
             </ul>
           </li>
           <li>Roles:
@@ -1394,6 +1673,8 @@
           </li>
           <li>Activities:
             <ul>
+              <li><a href="https://mcml.ai/news/2026-03-30-mcml-delegation-visit-to-the-uk-/" target="_blank">MCML Delegation Visit to the UK</a> (ICL, Oxford, Cambridge, UCL, KCL), 2026</li>
+              <li>Research visit at <a href="https://profiles.imperial.ac.uk/w.bai" target="_blank">Prof. Wenjia Bai's group</a>, Imperial College London, 2026</li>
               <li><a href="https://iplab.dmi.unict.it/icvss2024/" target="_blank">International Summer School in Computer Vision (ICVSS)</a>, Sicily, 2024</li>
             </ul>
           </li>
