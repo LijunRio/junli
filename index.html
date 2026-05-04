@@ -1503,7 +1503,7 @@
 
     function setLuckPool(value) {
       localStorage.setItem(luckStorageKey, String(value));
-      luckCount.textContent = formatLuckCount(value);
+      luckCount.textContent = '+' + formatLuckCount(value);
       luckCount.title = value.toLocaleString() + ' luck';
     }
 
