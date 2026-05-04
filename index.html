@@ -131,7 +131,6 @@
     .luck-icon {
       width: 40px;
       height: 40px;
-      margin-left: 0.5rem;
       border-radius: 50%;
       transition: transform 0.3s ease;
       cursor: pointer;
@@ -183,6 +182,77 @@
     
     body.dark-theme .luck-icon:hover {
       box-shadow: 0 4px 12px rgba(255, 215, 0, 0.6);
+    }
+
+    .luck-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-left: 0.5rem;
+      min-width: 0;
+    }
+
+    .luck-counter {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 62px;
+      max-width: 86px;
+      height: 34px;
+      padding: 0.25rem 0.45rem;
+      border: 1px solid rgba(243, 156, 18, 0.35);
+      border-radius: 8px;
+      background: rgba(255, 248, 225, 0.78);
+      color: #8a5a00;
+      font-size: 0.72rem;
+      line-height: 1.05;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(243, 156, 18, 0.12);
+      overflow: hidden;
+    }
+
+    .luck-counter-label,
+    .luck-counter-value {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .luck-counter-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .luck-counter-value {
+      font-size: 0.86rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .luck-counter.bump {
+      animation: luckCounterBump 0.22s ease-out;
+    }
+
+    @keyframes luckCounterBump {
+      0% {
+        transform: scale(1);
+      }
+      55% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    body.dark-theme .luck-counter {
+      background: rgba(82, 63, 0, 0.38);
+      border-color: rgba(255, 215, 0, 0.45);
+      color: #ffd86b;
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.12);
     }
     
     /* Main content styling */
@@ -730,10 +800,30 @@
       }
       
       /* Adjust luck icon on mobile */
+      .luck-widget {
+        gap: 0.25rem;
+        margin-left: 0.3rem;
+      }
+
       .luck-icon {
         width: 35px;
         height: 35px;
-        margin-left: 0.3rem;
+        margin-left: 0;
+      }
+
+      .luck-counter {
+        min-width: 54px;
+        max-width: 68px;
+        height: 30px;
+        padding: 0.2rem 0.35rem;
+      }
+
+      .luck-counter-label {
+        font-size: 0.54rem;
+      }
+
+      .luck-counter-value {
+        font-size: 0.78rem;
       }
     }
     
@@ -824,7 +914,13 @@
         <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
           <span id="theme-icon">🌙</span>
         </button>
-        <img src="images/icons/luck.gif" alt="Luck Icon" class="luck-icon" id="luck-icon" title="Good Luck!">
+        <div class="luck-widget" title="Luck Pool">
+          <img src="images/icons/luck.gif" alt="Luck Icon" class="luck-icon" id="luck-icon" title="Good Luck!">
+          <div class="luck-counter" aria-live="polite">
+            <span class="luck-counter-label">Luck Pool</span>
+            <span class="luck-counter-value" id="luck-count">0</span>
+          </div>
+        </div>
         <div class="nav-toggle" id="nav-toggle">
           <span></span>
           <span></span>
@@ -879,6 +975,24 @@
             <p>
               <strong>[05.2026]</strong>&nbsp;
               <em>Our paper <strong>Dynamic Decision Learning (DDL)</strong> was accepted by <strong><span style="color:red; font-weight:bold;">ICML 2026</span></strong>!</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2026]</strong>&nbsp;
+              <em>Joined the <a href="https://mcml.ai/news/2026-03-30-mcml-delegation-visit-to-the-uk-/" target="_blank"><strong>MCML Delegation Visit to the UK</strong></a>, visiting ICL, Oxford, Cambridge, UCL, and KCL.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2026]</strong>&nbsp;
+              <em>Visited <a href="https://profiles.imperial.ac.uk/w.bai" target="_blank"><strong>Prof. Wenjia Bai's group</strong></a> at Imperial College London and joined the Google visit.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[12.2025]</strong>&nbsp;
+              <em>Selected as a <a href="https://mcml.ai/about/boards/juniormemberreps/" target="_blank"><strong>Junior Member Representative</strong></a> of the Munich Center for Machine Learning (MCML).</em>
             </p>
           </div>
           <div class="news-item">
@@ -1273,6 +1387,11 @@
               <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024, 2025, 2026</li> 
             </ul>
           </li>
+          <li>Roles:
+            <ul>
+              <li><a href="https://mcml.ai/about/boards/juniormemberreps/" target="_blank">Junior Member Representative</a>, Munich Center for Machine Learning (MCML)</li>
+            </ul>
+          </li>
           <li>Activities:
             <ul>
               <li><a href="https://iplab.dmi.unict.it/icvss2024/" target="_blank">International Summer School in Computer Vision (ICVSS)</a>, Sicily, 2024</li>
@@ -1354,8 +1473,50 @@
     
     // Luck icon click effect
     const luckIcon = document.getElementById('luck-icon');
+    const luckCount = document.getElementById('luck-count');
+    const luckCounter = document.querySelector('.luck-counter');
+    const luckStorageKey = 'junliLuckPool';
+
+    function formatLuckCount(value) {
+      if (!Number.isFinite(value)) {
+        return '0';
+      }
+      if (value >= 10000000000) {
+        return '9.9B+';
+      }
+      if (value >= 1000000000) {
+        return (value / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
+      }
+      if (value >= 1000000) {
+        return (value / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      }
+      if (value >= 1000) {
+        return (value / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+      }
+      return String(value);
+    }
+
+    function getLuckPool() {
+      const savedValue = Number.parseInt(localStorage.getItem(luckStorageKey), 10);
+      return Number.isFinite(savedValue) && savedValue > 0 ? savedValue : 0;
+    }
+
+    function setLuckPool(value) {
+      localStorage.setItem(luckStorageKey, String(value));
+      luckCount.textContent = formatLuckCount(value);
+      luckCount.title = value.toLocaleString() + ' luck';
+    }
+
+    setLuckPool(getLuckPool());
     
     luckIcon.addEventListener('click', function(e) {
+      const nextLuckPool = getLuckPool() + 1;
+      setLuckPool(nextLuckPool);
+
+      luckCounter.classList.remove('bump');
+      void luckCounter.offsetWidth;
+      luckCounter.classList.add('bump');
+
       // Create bubble element
       const bubble = document.createElement('div');
       bubble.className = 'luck-bubble';
