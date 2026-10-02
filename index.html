@@ -273,6 +273,7 @@
     .paper-item-img img:hover {
       transform: scale(1.05);
     }
+
     
     /* Paper content section */
     .paper-item-content {
@@ -311,6 +312,7 @@
     body.dark-theme .paper-item-img img {
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
+
     
     /* Responsive design for paper items */
     @media (max-width: 768px) {
@@ -464,6 +466,36 @@
       line-height: 1.4;
       margin-bottom: 0.2rem;
     }
+
+    /* Services section styling */
+    .services-content ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .services-content > ul {
+      padding-left: 1.2rem;
+      list-style-type: disc;
+    }
+
+    .services-content > ul > li {
+      font-weight: 600;
+      color: #2980b9;
+      margin-bottom: 0.5rem;
+    }
+
+    .services-content ul ul {
+      margin-top: 0.3rem;
+      padding-left: 2rem;
+      list-style-type: circle;
+    }
+
+    .services-content ul ul li {
+      font-weight: normal;
+      color: #2c3e50;
+      line-height: 1.4;
+      margin-bottom: 0.2rem;
+    }
     
     /* Links */
     a {
@@ -577,6 +609,14 @@
     }
     
     body.dark-theme .others-content ul ul li {
+      color: #e0e0e0;
+    }
+
+    body.dark-theme .services-content > ul > li {
+      color: #64b5f6;
+    }
+
+    body.dark-theme .services-content ul ul li {
       color: #e0e0e0;
     }
     
@@ -870,6 +910,42 @@
         <div class="news-container">
           <div class="news-item">
             <p>
+              <strong>[09.2026]</strong>&nbsp;
+              <em>Two papers, <strong>DDX-TRACE</strong> and <strong>RealICU</strong>, accepted by <strong>NeurIPS 2026</strong> Evaluation Track!</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[09.2026]</strong>&nbsp;
+              <em>Nominated twice for the <strong>MICCAI 2026 Outstanding Reviewer Awards</strong> (<a href="https://conferences.miccai.org/2026/en/MICCAI-2026-OUTSTANDING-REVIEWER-AWARDS.html" target="_blank">awards</a>).</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[09.2026]</strong>&nbsp;
+              <em>Started serving as a reviewer for <strong>Medical Image Analysis (MedIA)</strong> and <strong>IEEE Transactions on Medical Imaging (TMI)</strong>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2026]</strong>&nbsp;
+              <em>Research visit at <strong>Imperial College London</strong>, hosted by <strong>Prof. Wenjia Bai's group</strong>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2026]</strong>&nbsp;
+              <em>Joined the <strong>MCML UK delegation visit</strong> to <strong>Imperial College London</strong>, <strong>University of Oxford</strong>, <strong>University of Cambridge</strong>, <strong>King's College London</strong>, and <strong>University College London</strong>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
+              <strong>[04.2026]</strong>&nbsp;
+              <em>As part of the delegation visit, gave invited talks at <strong>Imperial College London</strong>, <strong>King's College London</strong>, and <strong>University College London</strong>.</em>
+            </p>
+          </div>
+          <div class="news-item">
+            <p>
               <strong>[09.2025]</strong>&nbsp;
               <em>Our paper <strong>NOVA Benchmark</strong> accepted as <strong><span style="color:red;">Oral</span></strong> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track!</em>
             </p>
@@ -940,6 +1016,55 @@
       <heading>Publications</heading>
       <div class="paper-container">
         <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/DDX-TRACE.png" alt="DDX-TRACE paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>DDX-TRACE: A Benchmark for Medical Diagnostic Trajectories in VLMs</papertitle>
+            <p>
+              <em>Accepted by <strong>NeurIPS 2026</strong> Evaluation Track.</em>
+              <br><br>
+              Jiazhen Pan, Wenjun Shen, <strong>Jun Li</strong>, Julian Canisius, Felix Bitzer, Paula Roßmüller, Jiarui Yang, et al.
+              <br><br>
+              [<a href="https://arxiv.org/abs/2605.23629" target="_blank">paper</a>]
+            </p>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/RealICU.png" alt="RealICU paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>RealICU: Do LLM Agents Understand Long-Context ICU Data? A Benchmark Beyond Behavior Imitation</papertitle>
+            <p>
+              <em>Accepted by <strong>NeurIPS 2026</strong> Evaluation Track.</em>
+              <br><br>
+              Chenguang Shen, Wenjun Shen, Tobias Susetzky, <strong>Jun Li</strong>, Yixin Liu, Xi Zhang, Zeyu Gong, Daniel Rueckert, et al.
+              <br><br>
+              [<a href="https://arxiv.org/abs/2605.13542" target="_blank">paper</a>]
+            </p>
+          </div>
+        </div>
+
+        <!-- Paper item -->
+        <div class="paper-item">
+          <div class="paper-item-img">
+            <img src="images/papers/DDL.png" alt="DDL paper">
+          </div>
+          <div class="paper-item-content">
+            <papertitle>Dynamic Decision Learning: Test-Time Evolution for Abnormality Grounding in Rare Diseases</papertitle>
+            <p>
+              <em>Accepted by <strong>ICML 2026</strong>.</em>
+              <br><br>
+              <strong>Jun Li</strong>, Mingxuan Liu, Jiazhen Pan, Che Liu, Wenjia Bai, Cosmin I. Bercea, Julia A. Schnabel.
+              <br><br>
+              [<a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=t9vB5TgAAAAJ&sortby=pubdate&citation_for_view=t9vB5TgAAAAJ:0EnyYjriUFMC" target="_blank">paper</a>]
+            </p>
+          </div>
+        </div>
           
         <div class="paper-item">
           <div class="paper-item-img">
@@ -1232,11 +1357,30 @@
               <li><a href="https://github.com/LijunRio/VLP-Seminar" target="_blank">(S 24/25) AI for Vision-Language Pre-training in Medical Imaging (IN2107)</a></li> 
             </ul>
           </li>
+          <li>Journal Reviewer:
+            <ul>
+              <li>Medical Image Analysis (MedIA), Reviewer, 2026</li>
+              <li>IEEE Transactions on Medical Imaging (TMI), Reviewer, 2026</li>
+              <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor:28.0)</li>
+            </ul>
+          </li>
           <li>Conference Reviewer:
             <ul>
-              <li>ACM Computing Surveys (ACM CSUR), Invited Reviewer, 2025. (Impact Factor:28.0)</li>
+              <li>AAAI Conference on Artificial Intelligence (AAAI), Reviewer</li>
+              <li>Information Processing in Medical Imaging (IPMI), Reviewer</li>
               <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2025</li> 
               <li>International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI) 2024</li> 
+            </ul>
+          </li>
+          <li>Academic Visits:
+            <ul>
+              <li>MCML UK delegation visit to Imperial College London, University of Oxford, University of Cambridge, King's College London, and University College London, 2026</li>
+              <li>Research visit at Imperial College London, hosted by Prof. Wenjia Bai's group, 2026</li>
+            </ul>
+          </li>
+          <li>Talks and Presentations:
+            <ul>
+              <li>Research talks during the MCML UK delegation visit at Imperial College London, King's College London, and University College London, 2026</li>
             </ul>
           </li>
           <li>Activities:
