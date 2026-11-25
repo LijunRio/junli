@@ -220,9 +220,8 @@
     }
 
     .luck-counter-label {
-      font-size: 0.62rem;
+      font-size: 0.66rem;
       font-weight: 700;
-      text-transform: uppercase;
       opacity: 0.72;
     }
 
@@ -255,13 +254,6 @@
       box-shadow: 0 2px 8px rgba(255, 215, 0, 0.12);
     }
     
-    /* Main content styling */
-    .main-content {
-      max-width: 900px; /* Increased from 800px */
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    
     /* Section headers */
     heading {
       font-size: 1.8em;
@@ -271,15 +263,6 @@
       margin: 2rem 0 1rem 0;
       padding-bottom: 0.5rem;
       border-bottom: 3px solid #e8f4fd; /* Softer blue */
-    }
-    
-    /* Profile section */
-    .profile-section {
-      /* background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%); */
-      border-radius: 15px;
-      /* padding: 2rem; */
-      margin-bottom: 2rem;
-      /* box-shadow: 0 4px 15px rgba(33, 150, 243, 0.1); */
     }
     
     name {
@@ -410,7 +393,7 @@
       margin: 1rem 0;
       box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15); /* Enhanced shadow */
       position: relative;
-      height: 520px;
+      height: 320px;
       overflow: hidden;
       background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%); /* Very subtle blue gradient */
     }
@@ -953,7 +936,7 @@
         display: flex;
       }
       
-      .main-content {
+      .page-layout {
         padding: 1rem;
       }
       
@@ -962,7 +945,7 @@
       }
       
       .news-section {
-        height: 420px; /* Smaller height on mobile */
+        height: 300px; /* Taller on mobile: news items wrap onto more lines */
       }
       
       .news-container::-webkit-scrollbar {
@@ -1089,7 +1072,1002 @@
     color: #ffd700;
   }
   /* ...existing code... */
+
+    /* =====================================================================
+       Two-column layout: profile card + content panel
+       (one column below 1100px; profile card stacks on phones)
+       ===================================================================== */
+    body {
+      background-color: #f1f5f9;
+    }
+
+    .nav-logo,
+    .main-content heading,
+    .profile-info name,
+    .highlight-caption h3 {
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    }
+
+    .page-layout {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 940px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* ---------- Content panel ---------- */
+    .main-content {
+      min-width: 0;
+      background: #ffffff;
+      border: 1px solid #e3ecf4;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(41, 128, 185, 0.07);
+      padding: 2.25rem 2.5rem 2rem;
+    }
+
+    .main-content heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1d3a56;
+      letter-spacing: -0.01em;
+      padding: 0;
+      border: 0;
+      margin: 2.6rem 0 1.2rem 0;
+    }
+
+    .main-content heading::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 4px;
+      margin-top: 0.55rem;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #3498db, #1abc9c);
+    }
+
+    .main-content > section:first-child heading {
+      margin-top: 0;
+    }
+
+    #bio p {
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    #bio p + p {
+      margin-top: 0.8rem;
+    }
+
+    /* ---------- Research interest tags ---------- */
+    /* One plain line under the bio: muted lead-in, then the keywords */
+    .interests-card {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      margin-top: 0.75rem;
+    }
+
+    .interests-card .research-tags {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .main-content .research-label {
+      flex: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #8094a8;
+    }
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 0.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .research-tags li {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #2980b9; /* same blue as the name */
+    }
+
+    .research-tags li:not(:last-child)::after {
+      content: "/";
+      margin: 0 0.45rem;
+      font-weight: 400;
+      color: #b7c6d4;
+    }
+
+    /* ---------- Profile card ----------
+       Default (single-column mode): a compact header strip — small photo,
+       name, role and social icons; contacts/hobbies/motto fold out on demand.
+       Wide landscape screens turn it into the full sticky sidebar (see below). */
+    .profile-section {
+      position: relative;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      grid-template-areas:
+        "photo info"
+        "photo links"
+        "details details";
+      column-gap: 1.25rem;
+      row-gap: 0.45rem;
+      align-items: center;
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 1.25rem;
+      background: #ffffff;
+      border: 1px solid #e3ecf4;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(41, 128, 185, 0.07);
+    }
+
+    .profile-photo {
+      grid-area: photo;
+      width: 96px;
+    }
+
+    .profile-photo img {
+      display: block;
+      width: 100%;
+      border-radius: 40%;
+    }
+
+    .profile-info {
+      grid-area: info;
+      align-self: end;
+      min-width: 0;
+      padding-right: 7.5rem; /* room for the toggle button */
+      text-align: left;
+    }
+
+    .profile-info name {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-info .profile-role {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #1d3a56;
+    }
+
+    .profile-info .profile-org {
+      margin-top: 0.1rem;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      color: #6b7f93;
+    }
+
+    .profile-section .profile-links {
+      grid-area: links;
+      align-self: start;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0.2rem 0 0 0;
+    }
+
+    .profile-links .icon img {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+
+    .profile-toggle {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid #dbe6ef;
+      border-radius: 8px;
+      background: #f6f9fc;
+      color: #1f6fa8;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .profile-toggle:hover {
+      background: #eaf3fb;
+      border-color: #c5d9ea;
+    }
+
+    .profile-details {
+      grid-area: details;
+      display: none;
+      padding-top: 0.9rem;
+      margin-top: 0.4rem;
+      border-top: 1px solid #e6eef5;
+    }
+
+    .profile-section.expanded .profile-details {
+      display: block;
+    }
+
+    .profile-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.8rem 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .profile-facts li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .fact-icon {
+      flex: 0 0 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #eef5fb;
+      color: #2980b9;
+    }
+
+    .fact-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .fact-body {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      font-size: 0.86rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .fact-body a,
+    .fact-body span {
+      font-size: 0.92rem;
+    }
+
+    .fact-body .fact-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #8094a8;
+    }
+
+    .fact-body .fact-emoji {
+      letter-spacing: 0.12em;
+    }
+
+    .profile-section .profile-motto {
+      margin: 0.9rem 0 0 0;
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+      background: #f5f9fc;
+      font-size: 0.84rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: #46607a;
+    }
+
+    /* ---------- Research Highlights ---------- */
+    .main-content .highlights-intro {
+      margin: 0 0 1.1rem 0;
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: #4a5f73;
+      text-wrap: balance;
+    }
+
+    .highlight-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .highlight-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      padding: 0.45rem 0.45rem 0.6rem;
+      border: 1.5px solid transparent;
+      border-radius: 14px;
+      background: #f4f8fb;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .highlight-tab:hover {
+      transform: translateY(-2px);
+    }
+
+    .highlight-tab.active {
+      border-color: #3498db;
+      background: #eef6fd;
+      box-shadow: 0 6px 16px rgba(52, 152, 219, 0.18);
+    }
+
+    .ht-thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      margin-bottom: 0.35rem;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .ht-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ht-name {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1d3a56;
+    }
+
+    .ht-venue {
+      font-size: 0.7rem;
+      color: #6b7f93;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .highlight-stage {
+      margin-top: 0.9rem;
+      padding: 0.9rem;
+      border: 1px solid #e3ecf4;
+      border-radius: 16px;
+      background: #f8fbfd;
+    }
+
+    .highlight-figure {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 340px;
+      padding: 0.8rem 3.2rem;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .highlight-figure img[hidden],
+    .highlight-figure video[hidden] {
+      display: none;
+    }
+
+    .highlight-figure video {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .highlight-figure img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hl-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border: 1px solid #d6e4ef;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #2980b9;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .hl-arrow:hover {
+      background: #2980b9;
+      color: #ffffff;
+    }
+
+    .hl-prev { left: 0.6rem; }
+    .hl-next { right: 0.6rem; }
+
+    .highlight-caption {
+      padding: 0.9rem 0.3rem 0.2rem;
+    }
+
+    .hl-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .hl-meta {
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .hl-venue {
+      color: #1f6fa8;
+    }
+
+    .hl-role {
+      color: #8094a8;
+    }
+
+    .hl-role::before {
+      content: "·";
+      margin-right: 0.45rem;
+    }
+
+    .highlight-caption h3 {
+      margin: 0.55rem 0 0.45rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #1d3a56;
+    }
+
+    .hl-links a {
+      margin-right: 1.1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* ---------- Density: keep type and media at a reading size ----------
+       (stylesheet.css used to stretch paper thumbnails to 35% of the row) */
+    .main-content {
+      padding: 1.9rem 2.2rem 1.75rem;
+    }
+
+    .main-content heading {
+      font-size: 1.62rem;
+      margin: 2.5rem 0 1.1rem 0;
+    }
+
+    .main-content heading::after {
+      width: 36px;
+      height: 3px;
+      margin-top: 0.45rem;
+    }
+
+    /* Body copy inside the panel: one comfortable size and line height
+       (stylesheet.css forces 14px on p / a / strong) */
+    .main-content p,
+    .main-content li,
+    .main-content a,
+    .main-content strong,
+    .main-content em {
+      font-size: 15.5px;
+    }
+
+    #bio p {
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .research-tags li {
+      font-size: 15px;
+    }
+
+    .main-content .research-label {
+      font-size: 15px;
+      color: #6b7f93;
+    }
+
+    .main-content papertitle {
+      font-size: 16px;
+      line-height: 1.45;
+      margin-bottom: 0;
+    }
+
+    .main-content .paper-item-content {
+      gap: 0.2rem;
+    }
+
+    .main-content .paper-item-content p {
+      line-height: 1.6;
+    }
+
+    .main-content .news-item p {
+      line-height: 1.6 !important;
+    }
+
+    .main-content .hl-links a {
+      font-size: 0.95rem;
+    }
+
+    .main-content .record-title-link {
+      font-size: 1rem;
+    }
+
+    .main-content .project-title {
+      font-size: 1.15rem;
+    }
+
+    .highlight-figure {
+      height: 330px;
+    }
+
+    .main-content .paper-container {
+      gap: 0.25rem;
+    }
+
+    .main-content .paper-item {
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+
+    .main-content .paper-item:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .main-content .records-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      overflow: visible;
+      padding: 0.2rem 0 0.4rem;
+    }
+
+    .main-content .record-card {
+      flex: none;
+    }
+
+    .news-section .scroll-indicator {
+      display: none;
+    }
+
+    footer {
+      max-width: 940px;
+      margin: 0.5rem auto 0;
+      padding: 1.25rem 1.5rem 2rem;
+      background: none;
+      border-radius: 0;
+      color: #8094a8;
+    }
+
+    footer p,
+    footer a {
+      font-size: 13px;
+    }
+
+    body.dark-theme footer {
+      background: none;
+      color: #8a9bb0;
+    }
+
+    .main-content .paper-item-img {
+      flex: 0 0 230px;
+      width: 230px;
+      padding: 0;
+    }
+
+    .main-content .paper-item-img img {
+      width: 100%;
+      height: auto;
+      max-height: 140px;
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+    .main-content .paper-item-img img:hover {
+      transform: none;
+    }
+
+    /* ---------- Single-column, tablet width and up: contacts sit in the
+       header's empty right side instead of behind the toggle ---------- */
+    @media (min-width: 700px) {
+      /* Photo and name keep their natural width on the left (lined up with the
+         panel text below); the contacts column takes the rest of the width */
+      .profile-section {
+        grid-template-columns: auto auto minmax(0, 1fr);
+        grid-template-areas:
+          "photo info details"
+          "photo links details";
+        column-gap: 1.5rem;
+        padding: 1.5rem 2.2rem;
+      }
+
+      .profile-section .profile-details {
+        margin-left: 1.8rem;
+      }
+
+      .profile-photo {
+        width: 112px;
+      }
+
+      .profile-info {
+        padding-right: 0;
+      }
+
+      .profile-toggle {
+        display: none;
+      }
+
+      .profile-details,
+      .profile-section.expanded .profile-details {
+        display: block;
+        align-self: center;
+        margin: 0;
+        padding: 0.1rem 0 0.1rem 1.5rem;
+        border-top: 0;
+        border-left: 1px solid #e6eef5;
+      }
+
+      .profile-facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+        gap: 0.6rem 1.2rem;
+      }
+
+      .profile-facts li {
+        gap: 0.6rem;
+        margin-bottom: 0;
+      }
+
+      .fact-icon {
+        flex-basis: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+
+      .fact-icon svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .profile-section .profile-motto {
+        margin-top: 0.7rem;
+        padding: 0.45rem 0.75rem;
+        font-size: 0.82rem;
+      }
+    }
+
+    /* ---------- Wide landscape screens: sticky sidebar + wide panel ----------
+       Portrait windows (taller than wide) always get the single-column layout,
+       however wide they are. */
+    @media (min-width: 1100px) and (orientation: landscape) {
+      .page-layout {
+        max-width: 1480px;
+        display: grid;
+        grid-template-columns: 272px minmax(0, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+        padding: 2rem 2.5rem;
+      }
+
+      .nav-container,
+      footer {
+        max-width: 1480px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+
+      .profile-section {
+        position: sticky;
+        top: 84px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.1rem;
+        margin-bottom: 0;
+        padding: 1.5rem 1.25rem 1.25rem;
+        border-radius: 20px;
+        max-height: calc(100vh - 104px);
+        overflow-y: auto;
+      }
+
+      .profile-photo {
+        width: 140px;
+        margin: 0 auto;
+      }
+
+      .profile-info,
+      .profile-section .profile-links {
+        align-self: stretch;
+      }
+
+      .profile-info {
+        padding-right: 0;
+        text-align: center;
+      }
+
+      .profile-info name {
+        font-size: 1.95rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .profile-toggle {
+        display: none;
+      }
+
+      .profile-section .profile-details,
+      .profile-section.expanded .profile-details {
+        display: block;
+        order: 3;
+        align-self: stretch;
+        margin: 0;
+        padding: 1rem 0 0 0;
+        border-left: 0;
+        border-top: 1px solid #e6eef5;
+      }
+
+      .fact-icon {
+        flex-basis: 36px;
+        height: 36px;
+        border-radius: 10px;
+      }
+
+      .fact-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .profile-section .profile-motto {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.84rem;
+      }
+
+      .profile-facts {
+        display: block;
+      }
+
+      .profile-facts li {
+        margin-bottom: 0.8rem;
+      }
+
+      .profile-section .profile-motto {
+        margin-top: 0.2rem;
+      }
+
+      .profile-section .profile-links {
+        order: 4;
+        justify-content: center;
+        gap: 0.55rem;
+        margin: 0;
+      }
+
+      .profile-links .icon img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* ---------- Phones / small tablets ---------- */
+    @media (max-width: 768px) {
+      .page-layout {
+        padding: 1rem;
+      }
+
+      .nav-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .main-content .records-strip {
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .main-content .record-card {
+        flex: 0 0 240px;
+      }
+
+      .main-content {
+        padding: 1.4rem 1.1rem;
+        border-radius: 16px;
+      }
+
+      .main-content heading {
+        font-size: 1.5rem;
+      }
+
+      .highlight-tabs {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 0.4rem;
+        scroll-snap-type: x mandatory;
+      }
+
+      .highlight-tab {
+        flex: 0 0 128px;
+        scroll-snap-align: start;
+      }
+
+      .main-content .paper-item {
+        flex-direction: column;
+      }
+
+      .main-content .paper-item-img {
+        flex: none;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .main-content .paper-item-img img {
+        max-height: none;
+      }
+
+      .highlight-figure {
+        height: 220px;
+        padding: 0.6rem 2.6rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .profile-section {
+        grid-template-columns: 72px minmax(0, 1fr);
+        grid-template-areas:
+          "photo info"
+          "links links"
+          "toggle toggle"
+          "details details";
+        padding: 1rem 1.1rem;
+      }
+
+      .profile-photo {
+        width: 72px;
+      }
+
+      .profile-info {
+        align-self: center;
+        padding-right: 0;
+      }
+
+      .profile-info name {
+        font-size: 1.4rem;
+      }
+
+      .profile-section .profile-links {
+        margin-top: 0.35rem;
+      }
+
+      .profile-toggle {
+        grid-area: toggle;
+        position: static;
+        justify-self: start;
+      }
+    }
+
+    /* ---------- Dark theme ---------- */
+    body.dark-theme .main-content,
+    body.dark-theme .profile-section {
+      background: #1b1e23;
+      border-color: #2b3038;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    body.dark-theme .main-content heading,
+    body.dark-theme .ht-name,
+    body.dark-theme .highlight-caption h3 {
+      color: #e3f2fd;
+    }
+
+    body.dark-theme .profile-info .profile-role {
+      color: #e3f2fd;
+    }
+
+    body.dark-theme .research-tags li {
+      color: #64b5f6;
+    }
+
+    body.dark-theme .research-tags li:not(:last-child)::after {
+      color: #4a5563;
+    }
+
+    body.dark-theme .profile-details {
+      border-top-color: #2b3038;
+      border-left-color: #2b3038;
+    }
+
+    body.dark-theme .main-content .research-label,
+    body.dark-theme .profile-info .profile-org {
+      color: #8a9bb0;
+    }
+
+    body.dark-theme .hl-venue {
+      color: #90caf9;
+    }
+
+    body.dark-theme .profile-facts {
+      border-top-color: #2b3038;
+    }
+
+    body.dark-theme .fact-icon {
+      background: rgba(100, 181, 246, 0.12);
+      color: #90caf9;
+    }
+
+    body.dark-theme .fact-body .fact-label {
+      color: #8a9bb0;
+    }
+
+    body.dark-theme .profile-section .profile-motto {
+      background: #23272e;
+      color: #b8c7d6;
+    }
+
+    body.dark-theme .main-content .highlights-intro {
+      color: #b8c7d6;
+    }
+
+    body.dark-theme .highlight-tab {
+      background: #22262d;
+    }
+
+    body.dark-theme .highlight-tab.active {
+      border-color: #64b5f6;
+      background: #1f2a36;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-theme .ht-venue {
+      color: #9aaabb;
+    }
+
+    body.dark-theme .highlight-stage {
+      background: #20242a;
+      border-color: #2b3038;
+    }
+
+    body.dark-theme .highlight-figure,
+    body.dark-theme .ht-thumb {
+      background: #f4f6f8;
+    }
+
+    body.dark-theme .hl-arrow {
+      background: rgba(27, 30, 35, 0.92);
+      border-color: #3a414b;
+      color: #90caf9;
+    }
+
+    body.dark-theme .hl-arrow:hover {
+      background: #1976d2;
+      color: #ffffff;
+    }
+
+    body.dark-theme .hl-role {
+      color: #8a9bb0;
+    }
+
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/doraemeng.JPG">
   
@@ -1107,7 +2085,6 @@
     },
     "image": "https://lijunrio.github.io/junli/images/JunLi2.jpg",
     "url": "https://lijunrio.github.io/junli/",
-    "email": "june.li@tum.de",
     "sameAs": [
       "https://scholar.google.com/citations?user=t9vB5TgAAAAJ&hl=en",
       "https://github.com/LijunRio",
@@ -1125,6 +2102,7 @@
       <a href="#home" class="nav-logo">Jun Li</a>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#news" class="nav-link">News</a></li>
         <li><a href="#publications" class="nav-link">Publications</a></li>
         <li><a href="#teaching" class="nav-link">Teaching</a></li>
         <li><a href="#records" class="nav-link">Records</a></li>
@@ -1152,39 +2130,66 @@
     </div>
   </nav>
 
+  <div class="page-layout">
+    <!-- Home / Profile: a sticky sidebar on wide screens, a header card on narrow screens -->
+    <aside id="home" class="profile-section">
+      <div class="profile-photo">
+        <a href="images/JunLi2.jpg" target="_blank">
+          <img alt="Jun Li - Ph.D. Student at Technical University of Munich" src="images/JunLi2.jpg" class="hoverZoomLink">
+        </a>
+      </div>
+      <div class="profile-info">
+        <name>Jun Li</name>
+        <p class="profile-role">Ph.D. Student at TUM</p>
+        <p class="profile-org">MCML · AI-BAY-HEALTH</p>
+      </div>
+      <p class="profile-links">
+        <span class="icon"><a href="https://scholar.google.com/citations?user=t9vB5TgAAAAJ&hl=en" target="_blank"><img src="images/icons/scholar_4.png" alt="Google Scholar"></a></span>
+        <span class="icon"><a href="https://github.com/LijunRio" target="_blank"><img src="images/icons/github_5.png" alt="GitHub"></a></span>
+        <span class="icon"><a href="#" class="js-email" data-user="june.li" data-domain="tum.de"><img src="images/icons/email_icon_blue3.png" alt="Email"></a></span>
+        <span class="icon"><a href="https://www.linkedin.com/in/jun-li-657295290/" target="_blank"><img src="images/icons/linkedinblue3.png" alt="LinkedIn"></a></span>
+      </p>
+      <button class="profile-toggle" type="button" aria-expanded="false" aria-controls="profile-details">Show contacts</button>
+      <div class="profile-details" id="profile-details">
+        <ul class="profile-facts">
+          <li>
+            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span class="fact-body"><span class="fact-label">Email</span><a href="#" class="js-email" data-user="june.li" data-domain="tum.de">june.li [at] tum.de</a></span>
+          </li>
+          <li>
+            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <span class="fact-body"><span class="fact-label">Location</span><span>Munich, Germany</span></span>
+          </li>
+          <li>
+            <span class="fact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span>
+            <span class="fact-body"><span class="fact-label">Hobbies</span><span class="fact-emoji">🛹🎹🏊‍♀️🎧🏋️👩‍💻</span></span>
+          </li>
+        </ul>
+        <p class="profile-motto">🌟 Keep your eyes on the stars, and your feet on the&nbsp;ground.&nbsp;🤞🏻</p>
+      </div>
+    </aside>
+
   <div class="main-content">
-    <!-- Home Section -->
-    <section id="home" class="profile-section">
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;"><tbody>
-        <tr style="padding:0px">
-          <td style="padding:2.5%;width:40%;max-width:30%">
-            <a href="images/JunLi2.jpg" target="_blank">
-              <img style="width:100%;max-width:100%; border-radius: 40%;" alt="Jun Li - Ph.D. Student at Technical University of Munich" src="images/JunLi2.jpg" class="hoverZoomLink">
-            </a>
-          </td>
-          <td style="padding:2.5%;width:63%;vertical-align:middle">
-            <p style="text-align:left; display: flex; align-items: center;" >
-              <name>Jun Li</name>
-            </p>
-          <p style="line-height: 1.8em;">​Ph.D. Student
-            <br>
-            Technical University of Munich, Munich Center for Machine Learning
-            <br>
-            <em>Hobbies: </em>🛹🎹🚴‍♀️🎧🏋️👩‍💻
-            <br>
-            <em>🌟 Keep your eyes on the stars, and your feet on the ground.🤞🏻</em>
-            <br>
-          </p>
-          
-          <p style="text-align:left;">
-              <span class="icon" style="margin: 0.8%;"><a href="https://scholar.google.com/citations?user=t9vB5TgAAAAJ&hl=en" target="_blank"><img src="images/icons/scholar_4.png" alt="Google Scholar"></a></span>
-              <span class="icon" style="margin: 0.8%;"><a href="https://github.com/LijunRio" target="_blank"><img src="images/icons/github_5.png" alt="GitHub"></a></span>
-              <span class="icon" style="margin: 0.8%;"><a href="mailto:june.li@tum.de"><img src="images/icons/email_icon_blue3.png" alt="Email"></a></span>
-              <span class="icon" style="margin: 0.8%;"><a href="https://www.linkedin.com/in/jun-li-657295290/" target="_blank"><img src="images/icons/linkedinblue3.png" alt="LinkedIn"></a></span>
-          </p>
-        </td>
-      </tr>
-      </tbody></table>
+
+    <!-- About Section -->
+    <section id="bio">
+      <heading>About Me</heading>
+      <p>
+        ​I am currently a Ph.D. student in the <a href="https://www.cit.tum.de/cit/startseite/", target="_blank">School of Computation, Information and Technology</a>, <a href="https://www.tum.de/", target="_blank"> Technical University of Munich</a>, supervised by <a href="https://www.professoren.tum.de/schnabel-julia", target="_blank">Prof. Julia Schnabel</a>. I am funded by the <a href="https://mcml.ai/", target="_blank"> Munich Center for Machine Learning (MCML)</a> and work on medical foundation models in the <a href="https://ai-bay-health.github.io/ai-bay-health-site/" target="_blank">AI-BAY-HEALTH</a> project.
+        Previously, I received the M. Eng. degree from <a href="https://english.ucas.ac.cn/", target="_blank">University of the Chinese Academy of Sciences </a>, under the supervison from <a href="https://ieeexplore.ieee.org/author/37403242300", target="_blank">Prof. Ying Hu</a>.
+      </p>
+      <p>
+        My research focused on the intersection of deep learning and healthcare, particularly in the analysis of medical images. My passion lies in improving the practicality of deep learning algorithms, with a primary focus on Vision and Language models, Cross-Modality Generation, and Multi-Modality Learning. Through my work in these areas, I aim to advance deep learning techniques and their transformative impact on healthcare.
+      </p>
+      <div class="interests-card">
+        <span class="research-label">Research interests:</span>
+        <ul class="research-tags">
+          <li>Multimodal &amp; Omni-modal Large Models</li>
+          <li>Unified Understanding &amp; Generation</li>
+          <li>Agentic Evaluation</li>
+          <li>Trustworthy Medical AI</li>
+        </ul>
+      </div>
     </section>
 
     <!-- News Section -->
@@ -1312,17 +2317,24 @@
       </div>
     </section>
 
-    <!-- Bio Section -->
-    <section id="bio">
-      <!-- <heading>😎Short Bio</heading> -->
-       <heading>Short Bio</heading>
-      <p>
-        ​I am currently a Ph.D. student in the <a href="https://www.cit.tum.de/cit/startseite/", target="_blank">School of Computation, Information and Technology</a>, <a href="https://www.tum.de/", target="_blank"> Technical University of Munich</a>, supervised by <a href="https://www.professoren.tum.de/schnabel-julia", target="_blank">Prof. Julia Schnabel</a>. I am funded by the <a href="https://mcml.ai/", target="_blank"> Munich Center for Machine Learning (MCML)</a> and work on medical foundation models in the <a href="https://ai-bay-health.github.io/ai-bay-health-site/" target="_blank">AI-BAY-HEALTH</a> project.
-        Previously, I received the M. Eng. degree from <a href="https://english.ucas.ac.cn/", target="_blank">University of the Chinese Academy of Sciences </a>, under the supervison from <a href="https://ieeexplore.ieee.org/author/37403242300", target="_blank">Prof. Ying Hu</a>.
-      </p>
-      <p>
-        My research focused on the intersection of deep learning and healthcare, particularly in the analysis of medical images. My passion lies in improving the practicality of deep learning algorithms, with a primary focus on Vision and Language models, Cross-Modality Generation, and Multi-Modality Learning. Through my work in these areas, I aim to advance deep learning techniques and their transformative impact on healthcare.
-      </p>
+    <!-- Research Highlights: pick a paper on the thumbnail strip, see it large on the stage -->
+    <section id="highlights">
+      <heading>Research Highlights</heading>
+      <p class="highlights-intro">Teaching medical vision-language models to ground what they say in what they see, from abnormality localization to clinical reasoning and evaluation.</p>
+      <div class="highlight-tabs" role="tablist" aria-label="Research highlights"></div>
+      <div class="highlight-stage">
+        <figure class="highlight-figure">
+          <button class="hl-arrow hl-prev" type="button" aria-label="Previous highlight">‹</button>
+          <img id="hl-img" src="images/papers/DDL.png" alt="">
+          <video id="hl-video" muted loop playsinline controls preload="none" hidden></video>
+          <button class="hl-arrow hl-next" type="button" aria-label="Next highlight">›</button>
+        </figure>
+        <div class="highlight-caption">
+          <div class="hl-meta"><span class="hl-venue" id="hl-venue"></span><span class="hl-role" id="hl-role"></span></div>
+          <h3 id="hl-title"></h3>
+          <div class="hl-links" id="hl-links"></div>
+        </div>
+      </div>
     </section>
 
     <!-- Publications Section -->
@@ -1339,9 +2351,9 @@
             <papertitle>DDX-TRACE: A Benchmark for Medical Diagnostic Trajectories in VLMs</papertitle>
             <p>
               <em>Accepted by <strong>NeurIPS 2026</strong> Evaluation Track.</em>
-              <br><br>
+              <br>
               Jiazhen Pan, Wenjun Shen, <strong>Jun Li</strong>, Julian Canisius, Felix Bitzer, Paula Roßmüller, Jiarui Yang, et al.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2605.23629" target="_blank">paper</a>]
             </p>
           </div>
@@ -1356,9 +2368,9 @@
             <papertitle>RealICU: Do LLM Agents Understand Long-Context ICU Data? A Benchmark Beyond Behavior Imitation</papertitle>
             <p>
               <em>Accepted by <strong>NeurIPS 2026</strong> Evaluation Track.</em>
-              <br><br>
+              <br>
               Chenguang Shen, Wenjun Shen, Tobias Susetzky, <strong>Jun Li</strong>, Yixin Liu, Xi Zhang, Zeyu Gong, Daniel Rueckert, et al.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2605.13542" target="_blank">paper</a>]
             </p>
           </div>
@@ -1373,9 +2385,9 @@
             <papertitle>Dynamic Decision Learning: Test-Time Evolution for Abnormality Grounding in Rare Diseases</papertitle>
             <p>
               <em>Accepted by <strong><span style="color:red; font-weight:bold;">ICML 2026</span></strong>.</em>
-              <br><br>
+              <br>
               <strong>Jun Li</strong>, Mingxuan Liu, Jiazhen Pan, Che Liu, Wenjia Bai, Cosmin I. Bercea, Julia A. Schnabel
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2604.24972" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/DDL/" target="_blank">homepage</a>]
             </p>
@@ -1390,9 +2402,9 @@
             <papertitle>ReEvalMed: Rethinking Medical Report Evaluation by Aligning Metrics with Real-World Clinical Judgment</papertitle>
             <p>
               <em>Accepted by <strong>EMNLP 2025</strong>.</em>
-              <br><br>
+              <br>
               Ruochen Li*, <strong>Jun Li*</strong>, Bailiang Jian, Kun Yuan, Youxiang Zhu
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/pdf/2510.00280" target="_blank">paper</a>]
             </p>
           </div>
@@ -1406,7 +2418,7 @@
             <papertitle>Does DINOv3 Set a New Medical Vision Standard?</papertitle>
             <p>
               Che Liu, Yinda Chen, Haoyuan Shi, Jinpeng Lu, Bailiang Jian, Jiazhen Pan, Linghan Cai, Jiayi Wang, Yundi Zhang, <strong>Jun Li</strong>, Cosmin I. Bercea, Cheng Ouyang, Chen Chen, Zhiwei Xiong, Benedikt Wiestler, Christian Wachinger, Daniel Rueckert, Wenjia Bai, Rossella Arcucci
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/pdf/2509.06467" target="_blank">paper</a>]
             </p>
           </div>
@@ -1421,9 +2433,9 @@
             <papertitle>Knowledge to Sight: Reasoning over Visual Attributes via Knowledge Decomposition for Abnormality Grounding</papertitle>
             <p>
               <em>Accepted by <strong>WACV 2026</strong> (<span style="color:red; font-weight:bold;">Early Accept</span>, Top 6.4%).</em>
-              <br><br>
+              <br>
               <strong>Jun Li</strong>, Che Liu, Wenjia Bai, Mingxuan Liu, Rossella Arcucci, Cosmin I. Bercea, Julia A. Schnabel
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/pdf/2508.04572" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/K2Sight/" target="_blank">homepage</a>]
             </p>
@@ -1439,9 +2451,9 @@
             <papertitle>NOVA: A Benchmark for Anomaly Localization and Clinical Reasoning in Brain MRI</papertitle>
             <p>
               <em>Accepted as <span style="color:red; font-weight:bold;">Oral</span> paper by <strong>NeurIPS 2025</strong> Datasets and Benchmarks Track.</em>
-              <br><br>
+              <br>
               Cosmin I. Bercea, <strong>Jun Li</strong>, Philipp Raffler, Evamaria O. Riedel, Lena Schmitzer, Angela Kurz, Felix Bitzer, Paula Roßmüller, Julian Canisius, Mirjam L. Beyrle, Che Liu, Wenjia Bai, Bernhard Kainz, Julia A. Schnabel, Benedikt Wiestler.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2505.14064" target="_blank">paper</a>]
               [<a href="https://huggingface.co/papers/2505.14064" target="_blank">huggingface</a>]
             </p>
@@ -1457,7 +2469,7 @@
             <papertitle>Enhancing Abnormality Grounding for Vision-Language Models with Knowledge Descriptions</papertitle>
             <p>
               <strong>Jun Li</strong>, Che Liu, Wenjia Bai, Rossella Arcucci, Cosmin I. Bercea, Julia A. Schnabel.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2503.03278" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/AG-KD/" target="_blank">project</a>]
               [<a href="https://huggingface.co/spaces/RioJune/AG-KD" target="_blank">huggingface</a>]
@@ -1474,9 +2486,9 @@
             <papertitle>Organizing Unstructured Image Collections using Natural Language</papertitle>
             <p>
               <em>Accepted by <strong>CVPR 2026 Findings</strong>.</em>
-              <br><br>
+              <br>
               Mingxuan Liu, Zhun Zhong, <strong>Jun Li</strong>, Gianni Franchi, Subhankar Roy, Elisa Ricci.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2410.05217" target="_blank">paper</a>]
             </p>
           </div>
@@ -1491,7 +2503,7 @@
             <papertitle>Fmbench: Benchmarking fairness in multimodal large language models on medical tasks</papertitle>
             <p>
               Peiran Wu, Che Liu, Canyu Chen, <strong>Jun Li</strong>, Cosmin I Bercea, Rossella Arcucci.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2410.01089" target="_blank">paper</a>]
             </p>
           </div>
@@ -1506,9 +2518,9 @@
             <papertitle>Language Models Meet Anomaly Detection for Better Interpretability and Generalizability</papertitle>
             <p>
               <em>Accepted by <strong>MMMI 2024</strong>.</em>
-              <br><br>
+              <br>
               <strong>Jun Li</strong>, Su Hwan Kim, Philip Mller, Lina Felsner, Daniel Rueckert, Benedikt Wiestler, Julia A. Schnabel, Cosmin I. Bercea.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/pdf/2404.07622.pdf" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/Multi-Image-VQA-for-UAD/" target="_blank">project</a>]
             </p>
@@ -1523,9 +2535,8 @@
           <div class="paper-item-content">
             <papertitle>Design as Desired: Utilizing Visual Question Answering for Multimodal Pre-training</papertitle>
             <p>
-              <em>
               Tongkun Su*, <strong>Jun Li*</strong>, Xi Zhang, Haibo Jin, Hao Chen, Qiong Wang, Faqin Lv, Baoliang Zhao, Yin Hu
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/pdf/2404.00226.pdf" target="_blank">paper</a>]
               [<a href="https://github.com/MoramiSu/QFT-MICCAI2024" target="_blank">Code</a>]
             </p>
@@ -1541,9 +2552,9 @@
             <papertitle>Ultrasound Report Generation with Cross-Modality Feature Alignment via Unsupervised Guidance</papertitle>
             <p>
               <em>IEEE Transactions on Medical Imaging (IF:10.6).</em>
-              <br><br>
+              <br>
               <strong>Jun Li</strong>, Tongkun Su, Baoliang Zhao, Faqin Lv, Qiong Wang, Nassir Navab, Ying Hu, Zhongliang Jiang.
-              <br><br>
+              <br>
               [<a href="https://arxiv.org/abs/2406.00644" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/Ultrasound-Report-Generation/" target="_blank">project</a>]
             </p>
@@ -1562,9 +2573,9 @@
               <em>(<span style="font-style: italic; color: red; font-weight:bold;">Early Accept</span>)</em>
               <br>
               <em>(Student Travel Award, Top 5%)</em>
-              <br><br>
+              <br>
               <strong>Jun Li</strong>, Shibo Li, Ying Hu, Huiren Tao.
-              <br><br>
+              <br>
               [<a href="https://link.springer.com/chapter/10.1007/978-3-031-16452-1_56" target="_blank">paper</a>]
               [<a href="https://lijunrio.github.io/A-Self-Guided-Framework/" target="_blank">project</a>]
             </p>
@@ -1580,9 +2591,9 @@
             <papertitle>XctNet: Reconstruction network of volumetric images from a single X-ray image</papertitle>
             <p>
               <em><strong>Computerized Medical Imaging and Graphics (CMIG), 2022</strong>.</em>
-              <br><br>
+              <br>
               Zhiqiang Tan, <strong>Jun Li</strong>, Huiren Tao, Shibo Li, Ying Hu.
-              <br><br>
+              <br>
               [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0895611122000404" target="_blank">paper</a>]
             </p>
           </div>
@@ -1816,6 +2827,7 @@
       <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=340&t=tt&d=LpkeCEOsLWcfMT_2Q--JRRvMAuxzTlQA23wCR6roJiY&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff&w=400'></script>
     </div>
   </div>
+  </div>
 
   <footer>
     <p>© Jun Li | Homepage</p>
@@ -1844,10 +2856,14 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
         if (target) {
           const navbarHeight = document.querySelector('.navbar').offsetHeight;
-          const targetPosition = target.offsetTop - navbarHeight - 20; // 20px extra padding
+          // #home is a sticky sidebar on wide screens, so "Home" always means the top of the page
+          const targetPosition = href === '#home'
+            ? 0
+            : target.getBoundingClientRect().top + window.scrollY - navbarHeight - 20; // 20px extra padding
           
           window.scrollTo({
             top: targetPosition,
@@ -1952,6 +2968,109 @@
       }, 200);
     });
     
+    // Email links: the address is never written out in the HTML (no plain
+    // "@" for scrapers); it is assembled only when someone clicks the link
+    document.querySelectorAll('.js-email').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        window.location.href = 'mailto:' + link.dataset.user + '@' + link.dataset.domain;
+      });
+    });
+
+    // Compact profile header: fold contacts / hobbies / motto in and out
+    const profileCard = document.querySelector('.profile-section');
+    const profileToggle = document.querySelector('.profile-toggle');
+    profileToggle.addEventListener('click', () => {
+      const expanded = profileCard.classList.toggle('expanded');
+      profileToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      profileToggle.textContent = expanded ? 'Hide contacts' : 'Show contacts';
+    });
+
+    // Research Highlights showcase
+    const highlights = [
+      {
+        short: 'DDL', venue: 'ICML 2026', role: 'First author',
+        title: 'Dynamic Decision Learning: Test-Time Evolution for Abnormality Grounding in Rare Diseases',
+        thumb: 'images/papers/DDL.png', image: 'images/papers/DDL.gif',
+        links: [['Paper', 'https://arxiv.org/abs/2604.24972'], ['Project page', 'https://lijunrio.github.io/DDL/']]
+      },
+      {
+        short: 'K2Sight', venue: 'WACV 2026 · Early Accept', role: 'First author',
+        title: 'Knowledge to Sight: Reasoning over Visual Attributes via Knowledge Decomposition for Abnormality Grounding',
+        thumb: 'images/papers/K2-Sight.jpg', image: 'images/papers/K2-Sight.jpg',
+        video: 'https://lijunrio.github.io/K2Sight/static/videos/demo.mp4',
+        links: [['Paper', 'https://arxiv.org/pdf/2508.04572'], ['Project page', 'https://lijunrio.github.io/K2Sight/']]
+      },
+      {
+        short: 'DDX-TRACE', venue: 'NeurIPS 2026', role: 'Co-author',
+        title: 'DDX-TRACE: A Benchmark for Medical Diagnostic Trajectories in VLMs',
+        thumb: 'images/papers/DDX-TRACE.png', image: 'images/papers/DDX-TRACE.png',
+        links: [['Paper', 'https://arxiv.org/abs/2605.23629']]
+      },
+      {
+        short: 'NOVA', venue: 'NeurIPS 2025 · Oral', role: 'Second author',
+        title: 'NOVA: A Benchmark for Anomaly Localization and Clinical Reasoning in Brain MRI',
+        thumb: 'images/papers/NOVA.png', image: 'images/papers/NOVA.png',
+        links: [['Paper', 'https://arxiv.org/abs/2505.14064'], ['Hugging Face', 'https://huggingface.co/papers/2505.14064']]
+      },
+      {
+        short: 'ReEvalMed', venue: 'EMNLP 2025', role: 'Co-first author',
+        title: 'ReEvalMed: Rethinking Medical Report Evaluation by Aligning Metrics with Real-World Clinical Judgment',
+        thumb: 'images/papers/reevalmed.jpg', image: 'images/papers/reevalmed.jpg',
+        links: [['Paper', 'https://arxiv.org/pdf/2510.00280']]
+      }
+    ];
+
+    const hlTabs = document.querySelector('.highlight-tabs');
+    const hlImg = document.getElementById('hl-img');
+    const hlVideo = document.getElementById('hl-video');
+    let hlIndex = 0;
+
+    highlights.forEach((h, i) => {
+      const tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'highlight-tab';
+      tab.setAttribute('role', 'tab');
+      tab.innerHTML = '<span class="ht-thumb"><img src="' + h.thumb + '" alt="" loading="lazy"></span>' +
+        '<span class="ht-name">' + h.short + '</span><span class="ht-venue">' + h.venue + '</span>';
+      tab.addEventListener('click', () => showHighlight(i));
+      hlTabs.appendChild(tab);
+    });
+
+    function showHighlight(i) {
+      hlIndex = (i + highlights.length) % highlights.length;
+      const h = highlights[hlIndex];
+      if (h.video) {
+        hlImg.hidden = true;
+        hlVideo.hidden = false;
+        hlVideo.poster = h.image;
+        if (hlVideo.getAttribute('src') !== h.video) {
+          hlVideo.src = h.video;
+        }
+        hlVideo.setAttribute('aria-label', h.short + ' demo video');
+        hlVideo.play().catch(() => {});
+      } else {
+        hlVideo.pause();
+        hlVideo.hidden = true;
+        hlImg.hidden = false;
+        hlImg.src = h.image;
+        hlImg.alt = h.short + ' overview figure';
+      }
+      document.getElementById('hl-venue').textContent = h.venue;
+      document.getElementById('hl-role').textContent = h.role;
+      document.getElementById('hl-title').textContent = h.title;
+      document.getElementById('hl-links').innerHTML = h.links
+        .map(([label, url]) => '<a href="' + url + '" target="_blank">' + label + ' →</a>').join('');
+      hlTabs.querySelectorAll('.highlight-tab').forEach((t, j) => {
+        t.classList.toggle('active', j === hlIndex);
+        t.setAttribute('aria-selected', j === hlIndex ? 'true' : 'false');
+      });
+    }
+
+    document.querySelector('.hl-prev').addEventListener('click', () => showHighlight(hlIndex - 1));
+    document.querySelector('.hl-next').addEventListener('click', () => showHighlight(hlIndex + 1));
+    showHighlight(0);
+
     // 自动抓取并显示 GitHub star 数
     document.addEventListener("DOMContentLoaded", function() {
       document.querySelectorAll('.github-stars').forEach(function(el) {
